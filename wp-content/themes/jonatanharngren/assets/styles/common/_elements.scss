@@ -1,0 +1,23 @@
+img {
+	height: auto;
+	width: 100%;
+}
+
+::selection {
+  background: #eded50; /* WebKit/Blink Browsers */
+  color: $black;
+}
+::-moz-selection {
+  background: #eded50; /* Gecko Browsers */
+  color: $black;
+}
+
+a, input {
+  color: $black;
+
+  &:hover, &:focus, &:active {
+    color: $black;
+    text-decoration: none;
+    outline: 0;
+  }
+}

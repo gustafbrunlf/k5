@@ -1,0 +1,35 @@
+.sidebar {
+	position: fixed;
+	top: 50%;
+	transform: translate(0, -50%);
+	right: 0;
+	z-index: 100;
+
+	&__wrapper {
+		list-style-type: none;
+		padding-left: 0;
+		margin: 0;
+	}
+
+	&__item {
+		padding: 5px 20px;
+		color: rgb(249, 249, 249);
+		font-size: 30px;
+		line-height: 1;
+		opacity: 1;
+		transition: opacity 0.1s ease;
+
+		a {
+			color: rgb(249, 249, 249);
+		}
+
+		&:hover {
+			opacity: 0;
+			text-decoration: none;
+		}
+
+		@media (max-width: $xs-screen) {
+			font-size: 24px;
+		}
+	}
+}

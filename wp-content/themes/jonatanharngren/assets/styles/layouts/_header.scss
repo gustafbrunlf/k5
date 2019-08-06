@@ -1,0 +1,80 @@
+.header {
+	background-color: $black;
+	position: relative;
+	min-height: 60px;
+	padding: 0 100px;
+
+	@media (min-width: 1200px) {
+		position: fixed;
+		left: 0;
+		bottom: 50px;
+		background-color: transparent;
+		padding: 0 0 0 20px;
+		z-index: 1001;
+	}
+
+	&__logo-wrapper {
+		position: fixed;
+		top: 15px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 220px;
+		height: 31px;
+		z-index: 1000;
+
+		@media (min-width: 1200px) {
+			position: static;
+			left: initial;
+			transform: none;
+			width: 210px;
+		}
+	}
+
+	&__close-logo {
+		position: absolute;
+		top: -12px;
+    	right: -24px;
+    	height: 25px;
+    	width: 25px;
+    	padding: 5px;
+		cursor: pointer;
+
+		&:before, &:after {
+			content: "";
+		    position: absolute;
+		    top: 12px;
+    		left: 4px;
+			width: 15px;
+		    height: 1px;
+		    background: $white;
+		}
+
+		&:before {
+			transform: rotate(45deg);
+    		transform-origin: center center;
+		}
+
+		&:after {
+			transform: rotate(-45deg);
+		}
+	}
+
+	.menu-menu-container {
+		display: none;
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+		li {
+			display: inline-block;
+			margin-right: 10px;
+		}
+		a {
+			color: $white;
+		}
+
+		@media (min-width: 1200px) {
+			display: block;
+		}
+	}
+}

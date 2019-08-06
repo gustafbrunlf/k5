@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Hind+Guntur:400,700');
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro');
+
+body {
+    font-family: 'Hind Guntur', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: $black;
+
+    &.no-scroll {
+      overflow: hidden;
+    }
+}
+
+.main {
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+#sound-button {
+	position: fixed;
+	right: 0;
+	bottom: 54px;
+	padding: 10px 7px;
+	text-transform: uppercase;
+	color: rgb(249, 249, 249);
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1;
+
+	@media (max-width: 1024px) {
+		display: none;
+	}
+}
+.page-template-template-start .header, .page-template-template-start .footer {
+    display: none;
+}

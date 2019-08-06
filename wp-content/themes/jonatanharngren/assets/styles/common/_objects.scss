@@ -1,0 +1,67 @@
+.o-width-limiter {
+    height: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: left;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    @media (max-width: 1480px) {
+        max-width: 900px;
+    }
+}
+
+.o-grid {
+    @extend .row;
+    padding-top: 30px;
+
+    &--small {
+        @media (min-width: 992px) {
+            padding-top: 10px;
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+    }
+    &--no-margin {
+        margin-left: 0;
+        margin-right: 0;
+
+        .o-grid__column[class],
+        .o-grid__column--small[class] {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &__column {
+        @extend .col-xs-12;
+        color: inherit;
+        padding-bottom: 20px;
+
+        @media (min-width: 992px) {
+            &--small[class] {
+                padding-left: 5px;
+                padding-right: 5px;
+                padding-bottom: 10px;
+            }
+        }
+
+        &[data-size="6"] {
+            @extend .col-lg-6;
+        }
+        &[data-size="4"] {
+            @extend .col-lg-4;
+        }
+        &[data-size="3"] {
+            @extend .col-lg-3;
+        }
+        &[data-size="2"] {
+            @media (min-width: 992px) {
+                width: 20%;
+            }
+        }
+    }
+}
