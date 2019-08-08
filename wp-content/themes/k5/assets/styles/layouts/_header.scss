@@ -1,80 +1,50 @@
 .header {
-	background-color: $black;
-	position: relative;
-	min-height: 60px;
-	padding: 0 100px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 15px;
+	z-index: 1001;
+	color: $black;
+	font-size: 16px;
 
-	@media (min-width: 1200px) {
-		position: fixed;
-		left: 0;
-		bottom: 50px;
-		background-color: transparent;
-		padding: 0 0 0 20px;
-		z-index: 1001;
+	&__inner {
+		display: flex;
 	}
 
-	&__logo-wrapper {
-		position: fixed;
-		top: 15px;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 220px;
-		height: 31px;
-		z-index: 1000;
-
-		@media (min-width: 1200px) {
-			position: static;
-			left: initial;
-			transform: none;
-			width: 210px;
+	&__sound {
+		flex: 0 0 200px;
+		button {
+			box-shadow: none;
+			background-color: transparent;
+			color: inherit;
+			border: 0;
+			padding: 0;
 		}
 	}
 
-	&__close-logo {
-		position: absolute;
-		top: -12px;
-    	right: -24px;
-    	height: 25px;
-    	width: 25px;
-    	padding: 5px;
-		cursor: pointer;
+	&__nav, &__cart {
+		flex: 1 1 auto;
+	}
 
-		&:before, &:after {
-			content: "";
-		    position: absolute;
-		    top: 12px;
-    		left: 4px;
-			width: 15px;
-		    height: 1px;
-		    background: $white;
-		}
-
-		&:before {
-			transform: rotate(45deg);
-    		transform-origin: center center;
-		}
-
-		&:after {
-			transform: rotate(-45deg);
-		}
+	&__link {
+		flex: 0 0 100px;
+		font-size: 20px;
+		text-align: right;
 	}
 
 	.menu-menu-container {
-		display: none;
 		ul {
 			list-style-type: none;
 			padding: 0;
+			margin: 0;
 		}
 		li {
 			display: inline-block;
 			margin-right: 10px;
 		}
 		a {
-			color: $white;
-		}
-
-		@media (min-width: 1200px) {
-			display: block;
+			color: $black;
 		}
 	}
 }

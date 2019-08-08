@@ -1,15 +1,16 @@
 <?php
 
 function create_post_type_projects() {
-  register_post_type( 'projects',
+  register_post_type( 'product',
     array(
       'labels' => array(
-        'name' => __( 'Projects' ),
-        'singular_name' => __( 'Project' )
+        'name' => __( 'Products' ),
+        'singular_name' => __( 'Product' )
       ),
       'public' => true,
       'has_archive' => true,
       'show_in_rest' => true,
+      'taxonomies' => array('category'),
     )
   );
 }

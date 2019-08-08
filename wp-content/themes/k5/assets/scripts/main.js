@@ -20,47 +20,14 @@
       init: function() {
         // JavaScript to be fired on all pages
 
-        function fadeOutLogo( element, logo ) {
-          $(document).on("click", element, function(){
-            var $content = $(element).add(logo);
-            $content.css("opacity", "0");
-          });
-        }
-
-        fadeOutLogo('.header__close-logo', '.header__logo');
-
-        $(document).on("click", '.about-block__close', function(){
-          $('.about-block__image img').css("opacity", "0");
-        });
-
-        $(document).on("click", 'a', function(event){
-          var attribute = $(this).attr('href');
-          if( attribute === '#' ) {
-            event.preventDefault();
-            $('.popup:not(.popup--image)').addClass('popup__open');
-          }
-          if( attribute === '#form'  ) {
-            $('.form__popup').addClass('form__popup--open');
-          }
-          $('body').addClass('no-scroll');
-        });
-
-        $(document).on("click", '.popup__close, .popup__image', function(event){
-            $('.popup').removeClass('popup__open');
-            $('body').removeClass('no-scroll');
-        });
-
-        $(document).on("click", '.form__close', function(event){
-            $('.form__popup').removeClass('form__popup--open');
-            $('body').removeClass('no-scroll');
-        });
-
         $(document).on("click", '#sound-button', function(event){
           var myAudio = document.getElementById("sound");
           if (myAudio.paused) {
             myAudio.play();
+            $(this).text('Sound off');
           } else {
             myAudio.pause();
+            $(this).text('Sound on');
           }
         });
 

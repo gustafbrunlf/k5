@@ -1,19 +1,22 @@
 .c-project {
-    &-header__content {
+    &__header {
+        margin-bottom: 200px;
+    }
+    &__header-content {
         position: relative;
-    	min-height: calc(100vh - 54px);
+    	min-height: 100vh;
     	width: 100%;
     	text-align: center;
     	background-repeat: no-repeat;
     	background-size: cover;
     	background-position: center center;
     }
-    &-header__content--video {
+    &__header-content--video {
         position: relative;
         width: 100%;
         padding-top: 56.25%;
         min-height: initial;
-        
+
         video {
             position: absolute;
             top: 0;
@@ -24,7 +27,7 @@
             width: 100%;
         }
     }
-    &-header__title {
+    &__header-title {
 		position: absolute;
 		top: 50%;
 		left: 0;
