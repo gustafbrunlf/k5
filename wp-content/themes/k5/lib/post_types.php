@@ -11,6 +11,7 @@ function create_post_type_projects() {
       'has_archive' => true,
       'show_in_rest' => true,
       'taxonomies' => array('category'),
+      'supports' => array( 'title', 'editor', 'thumbnail' )
     )
   );
 }

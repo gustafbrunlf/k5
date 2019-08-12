@@ -17,6 +17,7 @@ $sage_includes = [
   'lib/wrapper.php',   // Theme wrapper class
   'lib/customizer.php', // Theme customizer
   'lib/post_types.php', // Post types
+  'lib/ajax.php',        // AJAX
   // 'lib/acf.php'
 ];
 
@@ -35,3 +36,6 @@ function custom_login_logo() {
 add_action('login_head', 'custom_login_logo');
 
 add_filter( 'show_admin_bar', '__return_false' );
+
+add_action ( 'wp_ajax_submitForm', 'submitAndEmailForm' );
+add_action ( 'wp_ajax_nopriv_submitForm', 'submitAndEmailForm' );

@@ -1,9 +1,12 @@
-<?php if ( get_field('sound', 'option') && is_page_template('template-start.php') ) : ?>
+<?php if ( get_field('sound', 'option') && !is_page_template('template-checkout.php') ) : ?>
 	<audio id="sound" loop autoplay>
 		 <source src="<?= get_field('sound', 'option'); ?>" type="audio/mpeg">
 	</audio>
 <?php endif; ?>
 
+<footer class="footer"></footer>
+
+<?php if(false): ?>
 <div class="popup">
 	<div class="popup__wrapper" style="background-color: <?= get_field('background-color', 'option'); ?>; color: <?= get_field('text-color', 'option'); ?>;">
 		<div class="popup__close"><span class="t-visually-hidden">Close popup</span></div>
@@ -49,7 +52,6 @@
 		</div>
 	</div>
 </div>
-<?php if(false): ?>
 <div class="form__popup">
 	<div class="form__wrapper">
 		<div class="form__header">
@@ -60,3 +62,7 @@
 	</div>
 </div>
 <?php endif; ?>
+
+<script type="text/javascript">
+    var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+</script>
