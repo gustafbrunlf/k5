@@ -1,6 +1,6 @@
 <header class="c-header" role="banner">
     <div class="c-header__inner">
-        <?php if ( get_field('sound', 'option') && !is_page_template('template-checkout.php') ) : ?>
+        <?php if ( get_field('sound', 'option') && !is_page_template('template-checkout.php') && !is_page_template('template-order.php') ) : ?>
             <div class="c-header__sound">
             	<button id="sound-button">Sound off</button>
             </div>

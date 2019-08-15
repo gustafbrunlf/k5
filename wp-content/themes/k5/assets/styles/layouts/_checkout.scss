@@ -1,0 +1,92 @@
+.c-checkout {
+    &__customer {
+        display: flex;
+        label {
+            font-size: 14px;
+            flex: 1 0 30%;
+            padding-left: 20px;
+
+            &:first-child {
+                flex: 1 0 70%;
+                padding-left: 0;
+            }
+        }
+        input {
+            display: block;
+            width: 100%;
+            background-color: transparent;
+            border: 0;
+
+            &[type="email"] {
+                border-bottom: 1px solid $black;
+            }
+        }
+    }
+    &__button {
+        margin-top: 20px;
+    }
+    &__items {
+        margin-bottom: 20px;
+    }
+    &__item {
+        display: flex;
+        flex-wrap: wrap;
+
+        select {
+            background-color: transparent;
+            border: 0;
+            min-width: 15px;
+            text-align: center;
+        }
+        &-title {
+            display: flex;
+            flex: 1 0 40%;
+
+            h2 {
+                margin: 0 0 0 10px;
+            }
+        }
+        &-size,
+        &-qty {
+            position: relative;
+            flex: 1 0 15%;
+        }
+        &-price,
+        &-price-shipping {
+            flex: 1 0 30%;
+            padding-left: 20px;
+        }
+        &-shipping {
+            flex: 1 0 70%;
+        }
+        &-remove {
+            position: relative;
+            height: 20px;
+            width: 20px;
+            padding: 5px;
+            margin-top: 3px;
+            margin-left: -10px;
+
+            &:after,
+            &:before {
+                content: '';
+                position: absolute;
+                top: 9px;
+                left: 5px;
+                height: 1px;
+                width: 10px;
+                background-color: $black;
+            }
+            &:after {
+                transform: rotate(45deg);
+            }
+            &:before {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+    &__error {
+        margin-top: 30px;
+        color: red;
+    }
+}

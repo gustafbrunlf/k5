@@ -32,24 +32,38 @@ $total_price = 0;
                             <div class="c-checkout__items">
                             <?php foreach ($cart as $product) : ?>
                                 <div class="c-checkout__item">
-                                    <h2><?= get_the_title($product); ?></h2>
-                                    <select name="size">
-                                        <option value="small">S</option>
-                                        <option value="small">M</option>
-                                        <option value="small">L</option>
-                                    </select>
-                                    <select name="qty">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <p><?= get_field('price', $product); ?> SEK</p>
-                                    <select name="shipping">
-                                        <option value="standard">Standard shipping</option>
-                                        <option value="pickup">Pickup</option>
-                                    </select>
+                                    <div class="c-checkout__item-title">
+                                        <button class="button c-checkout__item-remove" type="button" name="button"><span class="t-visually-hidden">Remove button</span></button>
+                                        <h2><a href="<?= get_permalink($product); ?>"><?= get_the_title($product); ?></a></h2>
+                                        <input type="hidden" name="product-title-<?= $product; ?>" value="<?= get_the_title($product); ?>">
+                                    </div>
+                                    <div class="c-checkout__item-size">
+                                        <select name="size">
+                                            <option value="small">S</option>
+                                            <option value="small">M</option>
+                                            <option value="small">L</option>
+                                        </select>
+                                    </div>
+                                    <div class="c-checkout__item-qty">
+                                        <select name="qty" data-price="<?= get_field('price', $product); ?>">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <p class="c-checkout__item-price"><span><?= get_field('price', $product); ?></span> SEK</p>
+                                    <input type="hidden" name="price" value="<?= get_field('price', $product); ?>">
+                                    <?php if(false): ?>
+                                        <div class="c-checkout__item-shipping">
+                                            <select name="shipping">
+                                                <option value="standard">Standard shipping</option>
+                                                <option value="pickup">Pickup</option>
+                                            </select>
+                                        </div>
+                                        <p class="c-checkout__item-price-shipping">100 SEK</p>
+                                    <?php endif; ?>
                                 </div>
                                 <?php $total_price += intval(get_field('price', $product)); ?>
                             <?php endforeach; ?>
@@ -62,13 +76,18 @@ $total_price = 0;
                         </div>
                     </div>
                     <div class="o-grid__column o-grid__column--small" data-size="6">
-                        <label for="checkout-email">Type your email</label>
-                        <input type="email" name="email" id="checkout-email">
-                        <label for="checkout-email">Total</label>
-                        <input type="number" name="total" id="checkout-email" value="<?= $total_price; ?>" disabled>
+                        <div class="c-checkout__customer">
+                            <label for="checkout-email">Type your email
+                                <input type="email" name="email" placeholder="Email" id="checkout-email" required="required">
+                                <input type="email" name="email2" placeholder="Email2" id="checkout-email-alt">
+                            </label>
+                            <label for="checkout-email">Total
+                                <input type="number" id="checkout-total" value="<?= $total_price; ?>" disabled>
+                            </label>
+                        </div>
                     </div>
                     <div class="o-grid__column o-grid__column--small" data-size="6">
-                        <button name="button">Send request</button>
+                        <button class="button c-checkout__button" name="button" disabled>Send request</button>
                     </div>
                 </form>
             <?php endif; ?>

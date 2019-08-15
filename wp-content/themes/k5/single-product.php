@@ -24,7 +24,7 @@ endif;
                 </div>
             </div>
             <div class="o-grid__column o-grid__column--small" data-size="6">
-                <button type="button" name="add-to-bag" data-id="<?= get_the_ID(); ?>" class="c-product__button c-product__button--add">Add to bag</button>
+                <button type="button" name="add-to-bag" data-id="<?= get_the_ID(); ?>" class="button c-product__button c-product__button--add">Add to bag</button>
                 <ul class="c-product__info">
                     <?php if($price = get_field('price')): ?>
                         <li class="c-product__price">
@@ -32,12 +32,12 @@ endif;
                         </li>
                     <?php endif; ?>
                     <?php if($size = get_field('size')): ?>
-                        <li class="c-product__price">
+                        <li class="c-product__size">
                             <p><?= $size; ?></p>
                         </li>
                     <?php endif; ?>
                     <li>
-                        <button type="button" name="button" class="c-product__button c-product__button--size">Size guide</button>
+                        <button type="button" name="button" class="button c-product__button c-product__button--size">Size guide</button>
                     </li>
                 </ul>
                 <a href="<?= wp_get_attachment_image_src(get_post_thumbnail_id(), 'large')[0]; ?>" class="c-product__image--scale">
