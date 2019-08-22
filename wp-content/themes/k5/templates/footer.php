@@ -1,4 +1,4 @@
-<?php if ( get_field('sound', 'option') && !is_page_template('template-checkout.php') ) : ?>
+<?php if ( get_field('sound', 'option') && !is_page_template('template-checkout.php') && !is_page_template('template-order.php') ) : ?>
 	<audio id="sound" loop autoplay>
 		 <source src="<?= get_field('sound', 'option'); ?>" type="audio/mpeg">
 	</audio>

@@ -9,7 +9,7 @@ $cookie_name = 'products';
 if(!isset($_COOKIE[$cookie_name])) {
     $cart_value = 0;
 } else {
-    $cart = json_decode($_COOKIE[$cookie_name]);
+    $cart = json_decode(stripslashes($_COOKIE[$cookie_name]));
     $cart_value = count($cart);
 }
 
@@ -34,27 +34,27 @@ $total_price = 0;
                                 <div class="c-checkout__item">
                                     <div class="c-checkout__item-title">
                                         <button class="button c-checkout__item-remove" type="button" name="button"><span class="t-visually-hidden">Remove button</span></button>
-                                        <h2><a href="<?= get_permalink($product); ?>"><?= get_the_title($product); ?></a></h2>
-                                        <input type="hidden" name="product-title-<?= $product; ?>" value="<?= get_the_title($product); ?>">
+                                        <h2><a href="<?= get_permalink($product->id); ?>"><?= get_the_title($product->id); ?></a></h2>
+                                        <input type="hidden" name="product-title-<?= $product->id; ?>" value="<?= get_the_title($product->id); ?>">
                                     </div>
                                     <div class="c-checkout__item-size">
                                         <select name="size">
-                                            <option value="small">S</option>
-                                            <option value="small">M</option>
-                                            <option value="small">L</option>
+                                            <?php if($sizes = get_field('sizes', $product->id)): ?>
+                                                <?php foreach ($sizes as $size) : ?>
+                                                    <option value="<?= $size['size']; ?>" <?= $product->size == $size['size'] ? ' selected' : ''; ?>><?= $size['size']; ?></option>
+                                            <?php endforeach;
+                                            endif; ?>
                                         </select>
                                     </div>
                                     <div class="c-checkout__item-qty">
-                                        <select name="qty" data-price="<?= get_field('price', $product); ?>">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                        <select name="qty" data-price="<?= get_field('price', $product->id); ?>">
+                                            <?php for ($i=1; $i <= 10; $i++) : ?>
+                                                <option value="<?= $i; ?>"><?= $i; ?></option>
+                                            <?php endfor; ?>
                                         </select>
                                     </div>
-                                    <p class="c-checkout__item-price"><span><?= get_field('price', $product); ?></span> SEK</p>
-                                    <input type="hidden" name="price" value="<?= get_field('price', $product); ?>">
+                                    <p class="c-checkout__item-price"><span><?= get_field('price', $product->id); ?></span> SEK</p>
+                                    <input class="c-checkout__item-price--hidden" type="hidden" name="price" value="<?= get_field('price', $product->id); ?>">
                                     <?php if(false): ?>
                                         <div class="c-checkout__item-shipping">
                                             <select name="shipping">
@@ -65,7 +65,7 @@ $total_price = 0;
                                         <p class="c-checkout__item-price-shipping">100 SEK</p>
                                     <?php endif; ?>
                                 </div>
-                                <?php $total_price += intval(get_field('price', $product)); ?>
+                                <?php $total_price += intval(get_field('price', $product->id)); ?>
                             <?php endforeach; ?>
                             </div>
                         <?php endif; ?>

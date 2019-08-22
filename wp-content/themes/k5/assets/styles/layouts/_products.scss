@@ -40,4 +40,20 @@
     > .o-width-limiter {
         padding-top: 90px;
     }
+    &__size {
+        display: none;
+
+         &:checked + label {
+            text-decoration: underline;
+         }
+    }
+    &__sizes {
+        display: flex;
+
+        label {
+            cursor: pointer;
+            padding: 0 5px;
+            margin: 0;
+        }
+    }
 }

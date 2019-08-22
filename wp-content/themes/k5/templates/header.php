@@ -18,8 +18,13 @@
             if(!isset($_COOKIE[$cookie_name])) {
                 $cart_value = 0;
             } else {
-                $cart_value = json_decode($_COOKIE[$cookie_name]);
-                $cart_value = count($cart_value);
+                $cart_value = json_decode(stripslashes($_COOKIE[$cookie_name]));
+
+                if(empty($cart_value)) {
+                    $cart_value = 0;
+                } else {
+                    $cart_value = count($cart_value);
+                }
             }
 
             $checkout = get_pages(array(

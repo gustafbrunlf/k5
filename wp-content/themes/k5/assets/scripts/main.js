@@ -77,8 +77,8 @@
             var ca = document.cookie.split(';');
             for(var i=0;i < ca.length;i++) {
                 var c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+                while (c.charAt(0)===' ') { c = c.substring(1,c.length); }
+                if (c.indexOf(nameEQ) === 0) {return c.substring(nameEQ.length,c.length); }
             }
             return null;
         }
@@ -87,21 +87,33 @@
             event.preventDefault();
             $(this).attr('disabled','disabled');
             $(this).text('Added');
-            var prodID = $(this).data('id');
+            var prodID = $(this).data('id').toString();
+            var prodSize = $(this).siblings('.c-product__info').find('input[name="size"]:checked').val();
             var products = getCookie('products');
             var countProdArr = 0;
             if(products) {
                 var cookieArray = JSON.parse(products);
-                cookieArray.push(prodID);
+                var cookieObj = {};
+                cookieObj['id'] = prodID;
+                cookieObj['size'] = prodSize;
+                cookieArray.push(cookieObj);
                 setCookie('products', JSON.stringify(cookieArray), 7);
                 countProdArr = cookieArray.length;
             } else {
                 var prodArr = [];
-                prodArr.push(prodID);
+                var prodObj = {};
+                prodObj['id'] = prodID;
+                prodObj['size'] = prodSize;
+                prodArr.push(prodObj);
                 setCookie('products', JSON.stringify(prodArr), 7);
                 $('.c-header__cart a').removeClass('hide');
                 countProdArr = prodArr.length;
             }
+
+            setTimeout(function(){
+                $('.c-product__button--add').text('Add to cart');
+                $('.c-product__button--add').removeAttr('disabled');
+            }, 2000);
 
             $('.c-header__cart-qty').text(countProdArr);
         });
@@ -127,6 +139,7 @@
             var price = $(this).data('price');
             var total = qty * price;
             $(this).parent().siblings('.c-checkout__item-price').find('span').html(total);
+            $(this).parent().siblings('.c-checkout__item-price--hidden').val(total);
 
             updateCartTotals();
         });
@@ -140,8 +153,6 @@
                 var total = $('#checkout-total').val();
                 var email = $('#checkout-email').val();
                 var error = '<h3 class="c-checkout__error">Something went wrong, try again.';
-
-                var html = $()
 
                 $.ajax({
                     type:"post",

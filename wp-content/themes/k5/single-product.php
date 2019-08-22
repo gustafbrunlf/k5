@@ -31,9 +31,12 @@ endif;
                             <p><?= $price; ?> SEK</p>
                         </li>
                     <?php endif; ?>
-                    <?php if($size = get_field('size')): ?>
-                        <li class="c-product__size">
-                            <p><?= $size; ?></p>
+                    <?php if($sizes = get_field('sizes')): ?>
+                        <li class="c-product__sizes">
+                        <?php foreach ($sizes as $key => $size) : ?>
+                            <input type="radio" id="size-<?= $key; ?>" class="c-product__size" name="size" value="<?= $size['size'] ?>" <?= $key == 0 ? ' checked' : ''; ?>>
+                            <label for="size-<?= $key; ?>"><?= $size['size']; ?></label>
+                        <?php endforeach; ?>
                         </li>
                     <?php endif; ?>
                     <li>
