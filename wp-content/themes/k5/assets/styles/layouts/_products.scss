@@ -1,19 +1,23 @@
 .c-product {
     &__title {
-        font-size: 24px;
+        font-size: 30px;
     }
 
     &__description p {
-        font-size: 24px;
+        font-size: 30px;
     }
 
     &__info {
+        display: flex;
         padding: 0;
         list-style-type: none;
-        display: flex;
 
         li {
             flex: 1 0 auto;
+
+            &:first-child {
+                flex: 0 0 100px;
+            }
         }
 
         p {
@@ -24,10 +28,9 @@
     &__button {
         &--add {
             left: calc(50% + 7.5px);
-            font-size: 24px;
+            font-size: 30px;
         }
         &--size {
-            font-size: 14px;
         }
     }
 
@@ -52,8 +55,34 @@
 
         label {
             cursor: pointer;
-            padding: 0 5px;
+            padding: 0 10px;
             margin: 0;
+            position: relative;
+
+            &:after {
+                content:"/";
+                position: absolute;
+                right: -3px;
+                top: 0px;
+            }
+            &:last-child {
+                &:after {
+                    display: none;
+                }
+            }
+        }
+    }
+    &-size-guide {
+        display: none;
+
+        &__wrapper {
+            display: flex;
+        }
+        &__sizes {
+            flex: 0 0 100px;
+        }
+        &__text {
+            flex: 0 0 40%;
         }
     }
 }

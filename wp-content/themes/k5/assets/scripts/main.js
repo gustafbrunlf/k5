@@ -94,16 +94,16 @@
             if(products) {
                 var cookieArray = JSON.parse(products);
                 var cookieObj = {};
-                cookieObj['id'] = prodID;
-                cookieObj['size'] = prodSize;
+                cookieObj.id = prodID;
+                cookieObj.size = prodSize;
                 cookieArray.push(cookieObj);
                 setCookie('products', JSON.stringify(cookieArray), 7);
                 countProdArr = cookieArray.length;
             } else {
                 var prodArr = [];
                 var prodObj = {};
-                prodObj['id'] = prodID;
-                prodObj['size'] = prodSize;
+                prodObj.id = prodID;
+                prodObj.size = prodSize;
                 prodArr.push(prodObj);
                 setCookie('products', JSON.stringify(prodArr), 7);
                 $('.c-header__cart a').removeClass('hide');
@@ -203,6 +203,10 @@
 
         $('#checkout-email').on('input',function(e){
             $('.c-checkout__button').removeAttr("disabled");
+        });
+
+        $(document).on("click", '.c-product__button--size', function(event){
+            $('.c-product-size-guide').slideToggle();
         });
 
       },

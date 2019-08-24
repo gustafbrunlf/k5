@@ -7,7 +7,7 @@ if($grid = get_field('Grid')):
 <?php endif; ?>
     <div class="o-grid<?= $grid_item['margin_top_bottom'] == 'sm' ? ' o-grid--small' : ''; ?><?= $grid_item['fullwidth_grid'] ? ' o-grid--no-margin' : ''; ?>">
         <?php foreach($grid_item['row'] as $component) : ?>
-            <div class="o-grid__column<?= $grid_item['margin_images'] == 'sm' ? ' o-grid__column--small' : ''; ?>" data-size="<?= $component['width']; ?>">
+            <div class="o-grid__column<?= $grid_item['margin_images'] == 'sm' ? ' o-grid__column--small' : ''; ?><?= $component['text_size'] != 'sm' ? ' o-grid__column--lg-text' : ''; ?>" data-size="<?= $component['width']; ?>">
                 <?php
                 if($prodID = $component['product']) :
                     $link = get_permalink($prodID);
@@ -21,7 +21,7 @@ if($grid = get_field('Grid')):
                     $secondary_title = $component['image_description'];
                 endif; ?>
 
-                <?php if($title || $image || $component['text_block']) : ?>
+                <?php if($title || $image || $component['text_block'] || $component['text_blocks']) : ?>
                     <?php if($link): ?>
                     <a href="<?= $link; ?>" class="c-project__image">
                     <?php endif; ?>
@@ -33,9 +33,14 @@ if($grid = get_field('Grid')):
                         <?php if($image): ?>
                             <img src="<?= wp_get_attachment_image_src($image, 'large')[0]; ?>" alt="<?= $title; ?>">
                         <?php endif; ?>
+                        <?php if(!$component['product'] && $component['text_block']): ?>
+                            <div class="c-project__text-block">
+                                <?= $component['text_block']; ?>
+                            </div>
+                        <?php endif; ?>
                         <?php
-                            if(!$component['product'] && $component['text_block']):
-                                foreach ($component['text_block'] as $text) : ?>
+                            if(!$component['product'] && $component['text_blocks']):
+                                foreach ($component['text_blocks'] as $text) : ?>
                                     <div class="c-project__text-block c-project__text-block--<?= $text['margin']; ?>">
                                         <?= $text['text']; ?>
                                     </div>
