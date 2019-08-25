@@ -55,19 +55,20 @@ $total_price = 0;
                                     </div>
                                     <p class="c-checkout__item-price"><span><?= get_field('price', $product->id); ?></span> SEK</p>
                                     <input class="c-checkout__item-price--hidden" type="hidden" name="price" value="<?= get_field('price', $product->id); ?>">
-                                    <?php if(false): ?>
-                                        <div class="c-checkout__item-shipping">
-                                            <select name="shipping">
-                                                <option value="standard">Standard shipping</option>
-                                                <option value="pickup">Pickup</option>
-                                            </select>
-                                        </div>
-                                        <p class="c-checkout__item-price-shipping">100 SEK</p>
-                                    <?php endif; ?>
+
                                 </div>
                                 <?php $total_price += intval(get_field('price', $product->id)); ?>
                             <?php endforeach; ?>
+                                <div class="c-checkout__item">
+                                    <div class="c-checkout__item-shipping">
+                                        <select name="shipping">
+                                            <option value="standard" selected>Standard shipping</option>
+                                        </select>
+                                    </div>
+                                    <p class="c-checkout__item-price-shipping">100 SEK</p>
+                                </div>
                             </div>
+                            <?php $total_price += 100; ?>
                         <?php endif; ?>
                     </div>
                     <div class="o-grid__column o-grid__column--small" data-size="6">

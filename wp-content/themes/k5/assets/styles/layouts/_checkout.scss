@@ -2,13 +2,12 @@
     &__customer {
         display: flex;
         label {
-            font-size: 14px;
+            font: $font-sz4;
             flex: 1 0 30%;
-            padding-left: 20px;
 
             &:first-child {
                 flex: 1 0 70%;
-                padding-left: 0;
+                padding-right: 20px;
             }
         }
         input {
@@ -16,56 +15,97 @@
             width: 100%;
             background-color: transparent;
             border: 0;
+            margin-top: 20px;
+            font: $font-sz2;
 
             &[type="email"] {
                 border-bottom: 1px solid $black;
             }
+
+            &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+              opacity: 0.2; /* Firefox */
+            }
+
+            &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+              opacity: 0.2;
+            }
+
+            &::-ms-input-placeholder { /* Microsoft Edge */
+              opacity: 0.2;
+            }
         }
     }
     &__button {
-        margin-top: 20px;
+        font: $font-sz2;
+        margin-top: 40px;
     }
     &__items {
-        margin-bottom: 20px;
+        margin-bottom: 150px;
+
+        @media (max-width: $xs-screen) {
+            margin-bottom: 50px;
+        }
     }
     &__item {
         display: flex;
         flex-wrap: wrap;
+        margin-bottom: 20px;
 
         select {
-            background-color: transparent;
+            background-color: #fff;
             border: 0;
-            min-width: 15px;
+            min-width: 35px;
             text-align: center;
+            font: $font-sz2;
+            background-image: url('../../assets/images/chevron.svg');
+            background-repeat: no-repeat;
+            background-position: 20px 50%;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
         }
         &-title {
             display: flex;
             flex: 1 0 40%;
 
             h2 {
+                font: $font-sz2;
                 margin: 0 0 0 10px;
             }
         }
         &-size,
         &-qty {
             position: relative;
-            flex: 1 0 15%;
+            flex: 1 0 10%;
         }
-        &-price,
-        &-price-shipping {
+        &-size select {
+            min-width: 40px;
+            background-position: 26px 50%;
+        }
+        &-price[class],
+        &-price-shipping[class] {
             flex: 1 0 30%;
+            font: $font-sz2;
+            margin: 0;
+        }
+        &-price {
             padding-left: 20px;
         }
         &-shipping {
             flex: 1 0 70%;
+
+            select {
+                padding-left: 23px;
+                background-position: 0px 50%;
+            }
         }
         &-remove {
             position: relative;
             height: 20px;
             width: 20px;
             padding: 5px;
-            margin-top: 3px;
-            margin-left: -10px;
+            margin-top: 7px;
+            margin-left: -6px;
 
             &:after,
             &:before {

@@ -31,7 +31,7 @@ endif;
 	    </div>
 		<?php get_template_part('templates/sidebar'); ?>
 
-	    <?php //get_template_part('templates/projects/project-grid'); ?>
+	    <?php get_template_part('templates/projects/project-grid'); ?>
 	</div>
 
 <?php endwhile; ?>

@@ -1,6 +1,6 @@
 .c-page-header {
     padding-bottom: 250px;
-    
+
     &__content {
         position: relative;
     	min-height: 100vh;
@@ -32,14 +32,18 @@
 		left: 0;
 		right: 0;
 		transform: translate(0, -50%);
-		font-size: 31px;
+		font: $font-sz2;
     	line-height: 1;
     	padding: 0 90px;
         margin: 0;
 
 		@media (max-width: $xs-screen) {
-			font-size: 26px;
+			font: $font-sz3;
 			padding: 0 60px;
     	}
 	}
+
+    @media (max-width: $xs-screen) {
+        padding-bottom: 150px;
+    }
 }

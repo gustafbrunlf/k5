@@ -73,12 +73,12 @@
 		left: 0;
 		right: 0;
 		transform: translate(0, -50%);
-		font-size: 31px;
+		font: $font-sz2;
     	line-height: 1;
     	padding: 0 90px;
 
 		@media (max-width: $xs-screen) {
-			font-size: 26px;
+			font: $font-sz2;
 			padding: 0 60px;
     	}
 	}
@@ -131,7 +131,7 @@
 
 		p {
 			margin-top: 5px;
-			font-size: 0.9rem;
+			font: $font-sz4;
 		}
 	}
 }
@@ -180,7 +180,7 @@
 		}
 
 		p {
-			font-size: 1.1rem;
+			font: $font-sz4;
 		    letter-spacing: -0.5px;
 		    line-height: 1.1;
 		}

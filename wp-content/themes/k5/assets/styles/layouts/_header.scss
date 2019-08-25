@@ -3,23 +3,31 @@
 	top: 0;
 	left: 0;
 	right: 0;
-	padding: 15px;
+	padding: 15px 20px;
 	z-index: 999;
 	color: $black;
-	font-size: 16px;
+	font: $font-sz4;
 
 	&__inner {
 		display: flex;
+
+		@media (max-width: $xs-screen) {
+			justify-content: space-between;
+		}
 	}
 
 	&__sound {
-		flex: 0 0 200px;
+		flex: 0 0 250px;
 		button {
 			box-shadow: none;
 			background-color: transparent;
 			color: inherit;
 			border: 0;
 			padding: 0;
+		}
+
+		@media (max-width: $xs-screen) {
+			display: none;
 		}
 	}
 
@@ -28,9 +36,15 @@
 	}
 
 	&__link {
-		flex: 0 0 100px;
-		font-size: 20px;
+		flex: 0 0 130px;
+		font: $font-sz2;
 		text-align: right;
+
+		@media (max-width: $xs-screen) {
+			font: $font-sz4;
+			flex: 0 0 90px;
+			order: 3;
+		}
 	}
 
 	.menu-menu-container {
@@ -45,6 +59,33 @@
 		}
 		a {
 			color: $black;
+		}
+	}
+
+	@media (min-width: 768px) {
+		&__cart {
+			margin-left: -2px;
+		}
+	}
+
+	@media (max-width: $xs-screen) {
+		&__cart {
+			order: 1;
+		}
+		&__nav {
+			order: 2;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.page-template-template-checkout {
+		.c-header__nav,
+		.c-header__cart {
+			flex: 1 0 50%;
+		}
+		.c-header__cart {
+			margin-left: 10px;
 		}
 	}
 }

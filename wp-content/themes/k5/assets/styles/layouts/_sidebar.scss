@@ -1,6 +1,6 @@
 .c-sidebar {
 	position: fixed;
-	top: 130px;
+	top: 100px;
 	left: 10%;
 	z-index: 100;
 
@@ -13,7 +13,7 @@
 	&__item {
 		padding: 0px 10px 5px;
 		color: $black;
-		font-size: 30px;
+		font: $font-sz2;
 		line-height: 1;
 		opacity: 1;
 		transition: opacity 0.1s ease;
@@ -24,7 +24,7 @@
 		}
 
 		@media (max-width: $xs-screen) {
-			font-size: 24px;
+			font: $font-sz2-2;
 		}
 	}
 }
