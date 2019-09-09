@@ -1,5 +1,9 @@
 <?php
-    $categories = get_categories();
+    $args = [
+        'orderby'   => 'name',
+        'order'     => 'DESC',
+    ];
+    $categories = get_categories($args);
     if($categories) :
 ?>
 <div class="c-sidebar">

@@ -39,3 +39,13 @@ add_filter( 'show_admin_bar', '__return_false' );
 
 add_action ( 'wp_ajax_submitForm', 'submitAndEmailForm' );
 add_action ( 'wp_ajax_nopriv_submitForm', 'submitAndEmailForm' );
+
+function namespace_add_custom_types( $query ) {
+  if( (is_category() || is_tag()) && $query->is_archive() && empty( $query->query_vars['suppress_filters'] ) ) {
+    $query->set( 'post_type', array(
+     'post', 'product'
+        ));
+    }
+    return $query;
+}
+add_filter( 'pre_get_posts', 'namespace_add_custom_types' );

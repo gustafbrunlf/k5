@@ -1,5 +1,6 @@
-<?php while (have_posts()) : the_post();
-$term = get_term( 1, 'category' );
+<?php if(have_posts()) :
+$page_id = get_queried_object_id();
+$term = get_term($page_id, 'category' );
 $style = "";
 if( $background_color = get_field('background_color', 'category_' . $term->term_id) ) :
     $style .= 'background-color:' . $background_color . ';';
@@ -111,4 +112,4 @@ endif;
         endif; ?>
 
 	</div>
-<?php endwhile; ?>
+<?php endif; ?>
