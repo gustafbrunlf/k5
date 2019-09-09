@@ -58,12 +58,16 @@ endif;
                         if($prodID = $component['product']) :
                             $link = get_permalink($prodID);
                             $image = get_post_thumbnail_id($prodID);
+                            $hover_image = get_field('hover_image', $prodID);
                             $title = get_field('number', $prodID);
+                            $title_hover = get_field('hover_title', $prodID);
                             $secondary_title = get_field('price', $prodID) . ' SEK';
                         else :
                             $link = $component['image_link'];
                             $image = $component['image'];
+                            $hover_image = $component['hover_image'];
                             $title = $component['image_title'];
+                            $title_hover = $component['hover_title'];
                             $secondary_title = $component['image_description'];
                         endif; ?>
 
@@ -73,11 +77,17 @@ endif;
                             <?php endif; ?>
                                 <?php if($title): ?>
                                     <h3 class="c-project__image-title"><?= $title; ?>
+                                    <?= $title_hover ? '<span class="c-project__image-title-hover">' . $title_hover . '</span>' : ''; ?>
                                     <?= $secondary_title ? '<span>' . $secondary_title . '</span>' : ''; ?>
                                     </h3>
                                 <?php endif; ?>
                                 <?php if($image): ?>
-                                    <img src="<?= wp_get_attachment_image_src($image, 'large')[0]; ?>" alt="<?= $title; ?>">
+                                    <div class="c-project__image-wrapper">
+                                        <img <?= $hover_image ? 'class="c-project__image-original" ' : ''; ?>src="<?= wp_get_attachment_image_src($image, 'large')[0]; ?>" alt="<?= $title; ?>">
+                                        <?php if($hover_image): ?>
+                                            <img class="c-project__image-hover" src="<?= wp_get_attachment_image_src($hover_image, 'large')[0]; ?>" alt="<?= $title; ?>">
+                                        <?php endif; ?>
+                                    </div>
                                 <?php endif; ?>
                                 <?php
                                     if(!$component['product'] && $component['text_block']):

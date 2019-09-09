@@ -5,7 +5,7 @@
     border: 0;
     padding: 0;
 
-    &[disabled] {
-        opacity: 0.2;
+    &[disabled]  {
+        color: rgba(0,0,0, 0.2);
     }
 }

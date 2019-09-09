@@ -33,6 +33,10 @@
             padding-right: 0;
         }
     }
+    &--no-margin-bottom[class] {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
 
     &__column {
         @extend .col-xs-12;
@@ -85,13 +89,25 @@
         }
 
         &--lg-text {
-            h3, h3 > span, p {
+            h3, h3 > span, p, p > span, span, strong, i, b, em {
                 font: $font-sz1;
+
+                @media (max-width: 1024px) {
+                    font: $font-sz2-2;
+                }
             }
         }
     }
 
     @media (min-width: 768px) {
         padding-bottom: 230px;
+    }
+}
+
+@media (max-width: $xs-screen) {
+    .page-template-template-about {
+        .o-grid__column[data-size="3"] {
+            width: 100%;
+        }
     }
 }

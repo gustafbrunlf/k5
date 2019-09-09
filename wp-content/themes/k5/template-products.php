@@ -4,19 +4,6 @@
  **/
 ?>
 <?php while (have_posts()) : the_post();
-$args = array(
-	'posts_per_page'   => -1,
-	'orderby'          => 'date',
-	'order'            => 'DESC',
-	'post_type'        => 'product',
-	'post_status'      => 'publish',
-);
-$post = get_posts( $args);
-
-foreach ($post as $key => $value) {
-    //echo $value->post_title;
-}
-
 $style = "";
 if( $background_color = get_field('background_color') ) :
     $style .= 'background-color:' . $background_color . ';';

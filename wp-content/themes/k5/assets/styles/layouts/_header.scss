@@ -8,6 +8,10 @@
 	color: $black;
 	font: $font-sz4;
 
+	@media (max-width: $xs-screen) {
+		top: 10px;
+	}
+
 	&__inner {
 		display: flex;
 
@@ -74,6 +78,9 @@
 		}
 		&__nav {
 			order: 2;
+		}
+		&__cart-checkout {
+			display: none;
 		}
 	}
 }

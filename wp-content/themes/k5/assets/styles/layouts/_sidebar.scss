@@ -15,16 +15,35 @@
 		color: $black;
 		font: $font-sz2;
 		line-height: 1;
-		opacity: 1;
-		transition: opacity 0.1s ease;
+		transition: transform 0.4s ease;
+
+		&--active {
+			transform: translateX(20px);
+		}
 
 		a {
 			display: block;
 			color: $black;
 		}
 
+		span {
+			opacity: 0;
+			transition: opacity 0.4s ease;
+		}
+
+		&:not(:first-child, .c-sidebar__item--active):hover {
+			transform: translateX(20px);
+			span {
+				opacity: 1;
+			}
+		}
+
 		@media (max-width: $xs-screen) {
 			font: $font-sz2-2;
 		}
+	}
+
+	@media (max-width: $xs-screen) {
+		top: 80px;
 	}
 }

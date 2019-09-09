@@ -47,3 +47,31 @@
         padding-bottom: 150px;
     }
 }
+.page-template-template-products {
+    @media (max-width: $xs-screen) {
+        .c-page-header {
+            padding-bottom: 170px;
+        }
+    }
+}
+.page-template-template-checkout {
+    @media (max-width: $xs-screen) {
+        .c-page-header {
+            padding-bottom: 130px;
+        }
+    }
+}
+.single-product {
+    @media (max-width: $xs-screen) {
+        .c-page-header {
+            padding-bottom: 200px;
+        }
+    }
+}
+.page-template-template-about {
+    @media (max-width: $xs-screen) {
+        .c-page-header {
+            padding-bottom: 250px;
+        }
+    }
+}

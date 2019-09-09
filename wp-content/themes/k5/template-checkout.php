@@ -10,7 +10,11 @@ if(!isset($_COOKIE[$cookie_name])) {
     $cart_value = 0;
 } else {
     $cart = json_decode(stripslashes($_COOKIE[$cookie_name]));
-    $cart_value = count($cart);
+    if(empty($cart)) {
+        $cart_value = 0;
+    } else {
+        $cart_value = count($cart);
+    }
 }
 
 $total_price = 0;
@@ -33,15 +37,18 @@ $total_price = 0;
                             <?php foreach ($cart as $product) : ?>
                                 <div class="c-checkout__item">
                                     <div class="c-checkout__item-title">
-                                        <button class="button c-checkout__item-remove" type="button" name="button"><span class="t-visually-hidden">Remove button</span></button>
+                                        <button class="button c-checkout__item-remove" type="button" name="button" data-prod="<?= $product->id; ?>"><span class="t-visually-hidden">Remove button</span></button>
                                         <h2><a href="<?= get_permalink($product->id); ?>"><?= get_the_title($product->id); ?></a></h2>
                                         <input type="hidden" name="product-title-<?= $product->id; ?>" value="<?= get_the_title($product->id); ?>">
+                                        <?php if(has_post_thumbnail($product->id)): ?>
+                                            <img class="c-checkout__item-image" src="<?= wp_get_attachment_image_src(get_post_thumbnail_id($product->id), 'large')[0]; ?>" alt="<?= get_the_title($product->id); ?>">
+                                        <?php endif; ?>
                                     </div>
                                     <div class="c-checkout__item-size">
                                         <select name="size">
                                             <?php if($sizes = get_field('sizes', $product->id)): ?>
                                                 <?php foreach ($sizes as $size) : ?>
-                                                    <option value="<?= $size['size']; ?>" <?= $product->size == $size['size'] ? ' selected' : ''; ?>><?= $size['size']; ?></option>
+                                                    <option value="<?= $size["size"]; ?>" <?= $product->size == $size["size"] ? ' selected' : ''; ?>><?= $size["size"]; ?></option>
                                             <?php endforeach;
                                             endif; ?>
                                         </select>
@@ -55,7 +62,6 @@ $total_price = 0;
                                     </div>
                                     <p class="c-checkout__item-price"><span><?= get_field('price', $product->id); ?></span> SEK</p>
                                     <input class="c-checkout__item-price--hidden" type="hidden" name="price" value="<?= get_field('price', $product->id); ?>">
-
                                 </div>
                                 <?php $total_price += intval(get_field('price', $product->id)); ?>
                             <?php endforeach; ?>
@@ -65,7 +71,7 @@ $total_price = 0;
                                             <option value="standard" selected>Standard shipping</option>
                                         </select>
                                     </div>
-                                    <p class="c-checkout__item-price-shipping">100 SEK</p>
+                                    <p class="c-checkout__item-price-shipping"><span>100</span> SEK</p>
                                 </div>
                             </div>
                             <?php $total_price += 100; ?>
@@ -78,12 +84,13 @@ $total_price = 0;
                     </div>
                     <div class="o-grid__column o-grid__column--small" data-size="6">
                         <div class="c-checkout__customer">
-                            <label for="checkout-email">Type your email
+                            <label for="checkout-email"><span>Type your email</span>
                                 <input type="email" name="email" placeholder="Email" id="checkout-email" required="required">
                                 <input type="email" name="email2" placeholder="Email2" id="checkout-email-alt">
                             </label>
-                            <label for="checkout-email">Total
-                                <input type="number" id="checkout-total" value="<?= $total_price; ?>" disabled>
+                            <label for="checkout-email"><span>Total</span>
+                                <input type="text" id="checkout-total" value="<?= $total_price; ?> SEK" disabled>
+                                <input type="hidden" id="checkout-total-hidden" value="<?= $total_price; ?>">
                             </label>
                         </div>
                     </div>

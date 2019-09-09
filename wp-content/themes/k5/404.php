@@ -1,7 +1,12 @@
-<?php get_template_part('templates/page', 'header'); ?>
-
-<div class="alert alert-warning">
-  <?php _e('Sorry, but the page you were trying to view does not exist.', 'sage'); ?>
+<div class="c-project">
+    <div class="c-page-header"<?= get_field('fullwidth_background_color') ? 'style="background-color:' . get_field('fullwidth_background_color') .';"' : ''; ?>>
+        <?php get_template_part('templates/projects/project-header'); ?>
+    </div>
+	<?php get_template_part('templates/sidebar'); ?>
+    <div class="o-width-limiter">
+        <div class="o-grid__column--lg-text">
+            <h3>Oooops</h3>
+            <p>Page doesn't exist. Go to start <a href="/">page</a></p>
+        </div>
+    </div>
 </div>
-
-<?php get_search_form(); ?>

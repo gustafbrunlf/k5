@@ -32,7 +32,7 @@
                 'meta_value' => 'template-checkout.php'
             ));
             ?>
-            <span>Cart / <span class="c-header__cart-qty"><?= $cart_value; ?></span> <a href="<?= get_permalink($checkout[0]->ID); ?>" <?= $cart_value < 1 ? ' class="hide"' : ''; ?>>/ Checkout</a></span>
+            <?= $cart_value > 0 ? '<a href="' . get_permalink($checkout[0]->ID)  . '">' : '' ?>Cart / <span class="c-header__cart-qty"><?= $cart_value; ?></span><?= $cart_value > 0 ? '<span class="c-header__cart-checkout"> / Checkout</span></a>' : '';?>
         </div>
         <?php if(!is_page_template('template-checkout.php')): ?>
             <div class="c-header__link">
