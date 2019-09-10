@@ -5,11 +5,19 @@
 
         span {
             margin-left: 40%;
+
+            @media (max-width: $xs-screen) {
+                margin-left: 35%;
+            }
         }
         &-hover[class] {
             opacity: 0;
             transition: opacity 0.4s ease;
             margin-left: 5px;
+
+            @media (max-width: $xs-screen) {
+                opacity: 1;
+            }
         }
         &.hover {
             .c-project__image-title-hover {

@@ -4,6 +4,7 @@
         'order'     => 'DESC',
     ];
     $categories = get_categories($args);
+
     if($categories) :
 ?>
 <div class="c-sidebar">
@@ -12,7 +13,11 @@
             <a href="<?= get_home_url(); ?>">Kultur5</a>
         </li>
     <?php foreach($categories as $key => $category) :
-        $current_page = get_the_id() === $category->term_id && is_category() ? true : false;
+        if(isset($wp_query->query['category_name'])) {
+            $current_page = $wp_query->query['category_name'] === $category->slug && is_category() ? true : false;
+        } else {
+            $current_page = false;
+        }
         $key++; ?>
         <li class="c-sidebar__item<?= ( $current_page ) ? ' c-sidebar__item--active' : ''; ?>">
             <?= !$current_page ? '<a href="' . get_category_link($category->term_id) . '">' : ''; ?>

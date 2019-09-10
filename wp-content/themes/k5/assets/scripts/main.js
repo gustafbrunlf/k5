@@ -127,12 +127,6 @@
             $('.c-header__cart').html();
             var new_cart = '<a href="' + window.location.href + '/checkout">Cart / <span class="c-header__cart-qty">' + countProdArr + '</span><span class="c-header__cart-checkout"> / Checkout</span></a>';
             $('.c-header__cart').html(new_cart);
-
-            var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-            if(width < 768 && $('.c-product').find('.c-product__checkout-link').length === 0) {
-                var checkout_link = '<a href="' + window.location.href + '/checkout" class="c-product__checkout-link">Checkout</a>';
-                $('.c-product__description').before(checkout_link);
-            }
         });
 
         function updateCartTotals() {
@@ -216,7 +210,7 @@
             var cookieProd = getCookie('products');
 
             if(($('.c-checkout__form').find('.c-checkout__item').length - 1) === 0) {
-                $('.c-checkout__items').html('<h2>Cart empty, continue shopping <a href="/k5/">here</a>.</h2>');
+                $('.c-checkout__items').html('<h2>Cart empty</h2>');
                 $('.c-checkout__customer, .c-checkout__button, .c-product__description').remove();
                 if(cookieProd) {
                     setCookie('products', [], 0.5);
