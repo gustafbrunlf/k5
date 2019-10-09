@@ -16,7 +16,7 @@ function debounce(func, wait, immediate) {
 
 // Scroll observer and styling for it
 var scrollObserver = function(selectorArray, offsetConfig) {
-    var offset = offsetConfig ? offsetConfig : {top: 0,5 bottom: 0,5};
+    var offset = offsetConfig ? offsetConfig : {top: 0.5, bottom: 0.5};
     var requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {window.setTimeout(callback, 1000 / 60)}
 
     var elementInViewpor = function(element) {
