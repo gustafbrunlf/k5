@@ -10,3 +10,71 @@ Text Domain:        kultur5
 License:            MIT License
 License URI:        http://opensource.org/licenses/MIT
 */
+
+/* Fix for product button */
+.c-product__button--add {
+	z-index: 10;
+}
+
+/* Update select color */
+::selection {
+	background: gold;
+}
+::-moz-selection {
+	background: gold;
+}
+
+/* Media on Shop all */
+.media_placeholder {
+	position: absolute; 
+	top: 10%;
+	right: 10%;
+	width: 70%;
+	max-width: 80%;
+	pointer-events: none;
+}
+.media_placeholder video,
+.media_placeholder img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+@media screen and (min-width: 768px) {
+	.media_placeholder {
+		max-width: 40%;
+	}
+}
+
+/* absolute-image stuff */
+.absolute-image {
+	display: block;
+	position: absolute;
+	pointer-events: none;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	height: auto;
+	width: auto;
+	max-width: 60%;
+	max-height: 300px;
+	transition: none !important;
+}
+
+.absolute-image.visible {
+	opacity: 1;
+}
+
+.absolute-image + .absolute-image {
+	transform: translateY(57%);
+}
+
+@media screen and (min-width: 768px) {
+	.absolute-image {
+		display: block;
+		width: 36%;
+		height: auto;
+		max-width: 400px;
+		max-height: none;
+	}
+}
