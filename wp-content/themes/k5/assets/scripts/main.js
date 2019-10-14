@@ -253,6 +253,10 @@
                 }
             });
         }
+
+        $(document).on("click", '.media_placeholder--close', function(event){
+            $(this).parent().remove();
+        });
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired

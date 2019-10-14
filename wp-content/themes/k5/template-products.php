@@ -4,7 +4,7 @@
  **/
 ?>
 
-<?php 
+<?php
 	// MEDIA
     $media = get_field('media');
     $type = null;
@@ -12,7 +12,7 @@
         $format = pathinfo($media['url'], PATHINFO_EXTENSION);
         $type = ($format === 'mp4') ? 'video' : 'image';
     }
-	
+
 	if (!empty($type)): ?>
     <div class="media_placeholder media_placeholder--<?php echo $type; ?>" data-format="<?php echo $format; ?>">
         <?php if ($type === 'video'): ?>
@@ -20,6 +20,7 @@
         <?php else: ?>
 			<img src="<?php echo $media['url']; ?>" alt="<?php echo $media['alt']; ?>" />
         <?php endif; ?>
+        <div class="media_placeholder--close"><span class="hide">Close</span></div>
     </div>
 <?php endif; ?>
 

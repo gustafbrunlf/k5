@@ -35,8 +35,19 @@
 		}
 	}
 
-	&__nav, &__cart {
+	&__nav,
+	&__cart {
 		flex: 1 1 auto;
+	}
+
+	@media (min-width: 992px) {
+		&__nav {
+			flex: 1 1 calc(50% - 250px);
+		}
+		&__cart {
+			flex: 1 1 calc(50% - 130px);
+			padding-left: 10px;
+		}
 	}
 
 	&__link {
@@ -63,12 +74,6 @@
 		}
 		a {
 			color: $black;
-		}
-	}
-
-	@media (min-width: 768px) {
-		&__cart {
-			margin-left: -2px;
 		}
 	}
 

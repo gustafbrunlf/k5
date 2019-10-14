@@ -12,6 +12,13 @@ body {
     }
 }
 
+::selection {
+	background: gold;
+}
+::-moz-selection {
+	background: gold;
+}
+
 .main {
     flex: 1 0 auto;
     width: 100%;

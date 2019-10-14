@@ -4,46 +4,12 @@ Theme URI:          https://roots.io/sage/
 Description:        Sage is a WordPress starter theme. <a href="https://github.com/roots/sage">Contribute on GitHub</a>
 Version:            1.0
 Author:             gb
-Author URI:         http://www.gustafbrunlof.se
+Author URI:
 Text Domain:        kultur5
 
 License:            MIT License
 License URI:        http://opensource.org/licenses/MIT
 */
-
-/* Fix for product button */
-.c-product__button--add {
-	z-index: 10;
-}
-
-/* Update select color */
-::selection {
-	background: gold;
-}
-::-moz-selection {
-	background: gold;
-}
-
-/* Media on Shop all */
-.media_placeholder {
-	position: absolute; 
-	top: 10%;
-	right: 10%;
-	width: 70%;
-	max-width: 80%;
-	pointer-events: none;
-}
-.media_placeholder video,
-.media_placeholder img {
-	display: block;
-	width: 100%;
-	height: auto;
-}
-@media screen and (min-width: 768px) {
-	.media_placeholder {
-		max-width: 40%;
-	}
-}
 
 /* absolute-image stuff */
 .absolute-image {
