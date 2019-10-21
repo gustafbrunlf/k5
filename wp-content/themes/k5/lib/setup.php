@@ -102,5 +102,9 @@ function assets() {
   }
 
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
+	
+	// NEW STUFFS
+	wp_enqueue_style('kudos-style-file',  get_stylesheet_directory_uri() . '/style.css');
+	wp_enqueue_script('scroll-observer',  get_stylesheet_directory_uri() . '/scrollObserver.js');
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
