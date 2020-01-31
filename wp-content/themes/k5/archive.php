@@ -84,9 +84,9 @@ endif;
                                 <?php endif; ?>
                                 <?php if($image): ?>
                                     <div class="c-project__image-wrapper">
-                                        <img <?= $hover_image ? 'class="c-project__image-original" ' : ''; ?>src="<?= wp_get_attachment_image_src($image, 'large')[0]; ?>" alt="<?= $title; ?>">
+                                        <img <?= $hover_image ? 'class="c-project__image-original" ' : ''; ?>src="<?= wp_get_attachment_image_src($image, 'full')[0]; ?>" alt="<?= $title; ?>">
                                         <?php if($hover_image): ?>
-                                            <img class="c-project__image-hover" src="<?= wp_get_attachment_image_src($hover_image, 'large')[0]; ?>" alt="<?= $title; ?>">
+                                            <img class="c-project__image-hover" src="<?= wp_get_attachment_image_src($hover_image, 'full')[0]; ?>" alt="<?= $title; ?>">
                                         <?php endif; ?>
                                     </div>
                                 <?php endif; ?>

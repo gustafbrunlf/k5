@@ -1,8 +1,8 @@
 <?php while (have_posts()) : the_post(); ?>
-<?php 
+<?php
 	$style = "";
-	if( $background_image = get_field('background-image') ) : 
-		$style = 'background-image: url(' . wp_get_attachment_image_src( $background_image, 'large' )[0] . ');';
+	if( $background_image = get_field('background-image') ) :
+		$style = 'background-image: url(' . wp_get_attachment_image_src( $background_image, 'full' )[0] . ');';
 	elseif( $background_color = get_field('background-color') ) :
 		$style .= 'background-color:' . $background_color . ';';
 	endif;
@@ -20,7 +20,7 @@
 			<?php if( $profile_image ) : ?>
 				<div class="about-block__image">
 					<div class="about-block__close"></div>
-					<img src="<?= wp_get_attachment_image_src( $profile_image, 'large' )[0]; ?>" alt="">
+					<img src="<?= wp_get_attachment_image_src( $profile_image, 'full' )[0]; ?>" alt="">
 				</div>
 			<?php endif; ?>
 

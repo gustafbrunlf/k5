@@ -41,7 +41,7 @@ $total_price = 0;
                                         <h2><a href="<?= get_permalink($product->id); ?>"><?= get_the_title($product->id); ?></a></h2>
                                         <input type="hidden" name="product-title-<?= $product->id; ?>" value="<?= get_the_title($product->id); ?>">
                                         <?php if(has_post_thumbnail($product->id)): ?>
-                                            <img class="c-checkout__item-image" src="<?= wp_get_attachment_image_src(get_post_thumbnail_id($product->id), 'large')[0]; ?>" alt="<?= get_the_title($product->id); ?>">
+                                            <img class="c-checkout__item-image" src="<?= wp_get_attachment_image_src(get_post_thumbnail_id($product->id), 'full')[0]; ?>" alt="<?= get_the_title($product->id); ?>">
                                         <?php endif; ?>
                                     </div>
                                     <div class="c-checkout__item-size">
