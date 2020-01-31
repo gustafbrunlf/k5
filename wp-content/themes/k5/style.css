@@ -12,35 +12,57 @@ License URI:        http://opensource.org/licenses/MIT
 */
 
 /* absolute-image stuff */
+.page-template-template-about .c-project__image-wrapper {
+    display: none;
+}
+.absolute-image,
+.absolute-image img {
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+}
 .absolute-image {
-	display: block;
-	position: absolute;
-	pointer-events: none;
-	z-index: 10;
-	top: 0;
-	left: 0;
-	opacity: 0;
-	height: auto;
-	width: auto;
-	max-width: 60%;
-	max-height: 300px;
-	transition: none !important;
+    display: block !important;
+    height: 1px;
+    overflow-x: hidden;
+    top: 0;
+    left: 0;
+}
+.absolute-image img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 60%;
+/* max-height: 300px; */
+    transition: none !important;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    margin-top: -15%;
+}
+.absolute-image img + img,
+.absolute-image img:nth-last-of-type(2) {
+    margin-top: 0;
+}
+.absolute-image img + img {
+    transform: translateY(-50%);
+    
+}
+.absolute-image img:nth-last-of-type(2) {
+    left: 0;
 }
 
-.absolute-image.visible {
-	opacity: 1;
+.absolute-image.visible img {
+    position: fixed;
+    z-index: 10;
+    opacity: 1;
 }
-
-.absolute-image + .absolute-image {
-	transform: translateY(57%);
-}
-
 @media screen and (min-width: 768px) {
-	.absolute-image {
-		display: block;
-		width: 36%;
-		height: auto;
-		max-width: 400px;
-		max-height: none;
-	}
+    .absolute-image img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 600px;
+        max-height: none;
+    }
 }

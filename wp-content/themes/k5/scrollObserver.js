@@ -1,4 +1,17 @@
-// Debouncer
+// Här
+var instaellningar = {
+    showImageWhen: {
+        topIs: -0.75,
+        bottomIs: -0.4
+    },
+    positionImageRandomFrom: {
+        leftBetween: [-75, 50],
+        topBetween: [-50, 50]
+    },
+    multiplyImageHeightBy: 1.2 // Set this one to more if you want more of the image
+}
+
+// Inte här
 function debounce(func, wait, immediate) {
 	var timeout;
 	return function() {
@@ -14,40 +27,41 @@ function debounce(func, wait, immediate) {
 	};
 };
 
-// Scroll observer and styling for it
-var scrollObserver = function(selectorArray, offsetConfig) {
-    var offset = offsetConfig ? offsetConfig : {top: 0.5, bottom: 0.5};
+var scrollObserver = function(selectorArray) {
     var requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {window.setTimeout(callback, 1000 / 60)}
 
-    var elementInViewpor = function(element) {
-        var scroll = window.scrollY || window.pageYOffset
-        var elementTop = element.getBoundingClientRect().top + scroll
+    var elementInViewpor = function(obj) {
+        var element = obj.element;
+        var image = obj.image;
+        var scroll = window.scrollY || window.pageYOffset;
+        var elementTop = element.getBoundingClientRect().top;
 
-        var viewport = {
+        var offset = {
+            top: image.clientHeight * instaellningar.showImageWhen.topIs,
+            bottom: image.clientHeight * instaellningar.showImageWhen.bottomIs
+        };
+
+        var scrollPosition = {
             top: scroll,
             bottom: scroll + window.innerHeight
-        }
+        };
 
-        var rect = {
-            top: elementTop,
-            bottom: elementTop + element.clientHeight,
-        }
+        var element = {
+            top: elementTop + scrollPosition.top + offset.top,
+            bottom: elementTop + scrollPosition.bottom + (image.clientHeight * instaellningar.multiplyImageHeightBy) + offset.bottom
+        };
 
-        var offsetTop = window.innerHeight * offset.top;
-        var offsetBottom = window.innerHeight * offset.bottom;
-
-        return (rect.top - offsetTop >= viewport.top && rect.top + offsetBottom <= viewport.bottom);
+        return (element.top <= scrollPosition.top && element.bottom >= scrollPosition.bottom);
     }
 
     var getRandomInt = function(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
-
-    var setVisibility = function(element, boolean) {
+    
+    var setVisibility = function(obj, boolean) {
+        var element = obj.element;
         if (boolean && !element.classList.contains('visible')) {
             element.classList.add('visible');
-            element.style.left = getRandomInt(0, 10) + '%';
-            element.style.transform = 'transformY(' + getRandomInt(-10, 50) + '%)';
         } else if (!boolean && element.classList.contains('visible')) {
             element.classList.remove('visible');
         } else {
@@ -55,18 +69,16 @@ var scrollObserver = function(selectorArray, offsetConfig) {
         }
     }
 
-    var handleElement = function(element) {
-        setVisibility(element, elementInViewpor(element));
-    }
+    var initObserver = function(obj) {
+        obj.image.style.transform = 'translateX(' + obj.position.left + ') translateY(' + obj.position.top + ')';
 
-    var initObserver = function(element) {
-        handleElement(element);
+        setVisibility(obj, elementInViewpor(obj));
 
         var debouncer = debounce(function() {
             requestAnimationFrame(function() {
-                handleElement(element)
+                setVisibility(obj, elementInViewpor(obj));
             });
-        }, 75);
+        }, 15);
         window.addEventListener('scroll', debouncer);
     }
 
@@ -74,17 +86,36 @@ var scrollObserver = function(selectorArray, offsetConfig) {
         return false;
     }
 
+    var posLeft = instaellningar.positionImageRandomFrom.leftBetween;
+    var posTop = instaellningar.positionImageRandomFrom.topBetween;
     for (var i = 0; i < selectorArray.length; i++) {
-		selectorArray[i].classList.add('absolute-image');
-        initObserver(selectorArray[i]);
+        var element = selectorArray[i];
+        var image = element.querySelector('img');
+
+        if (!image) {
+            continue;
+        }
+
+        if (!element.classList.contains('absolute-image')) {
+            element.classList.add('absolute-image');
+        }
+
+        var object = {
+            element: element,
+            image: image,
+            position: {
+                left: getRandomInt(posLeft[0], posLeft[1]) + '%',
+                top: getRandomInt(posTop[0], posTop[1]) + '%',
+            }
+        };
+        initObserver(object);
     }
 }
 
-// Init
 document.addEventListener('DOMContentLoaded', function() {
     if (!document.body.classList.contains('page-template-template-about')) {
         return;
     }
 
-	scrollObserver(document.querySelectorAll('.c-project__image-wrapper img'), {top: 0.9, bottom: 0.9});
+    scrollObserver(document.querySelectorAll('.c-project__image-wrapper'));
 });
