@@ -18,13 +18,16 @@
         } else {
             $current_page = false;
         }
-        $key++; ?>
+
+        $cat_number = get_field('cat_number', 'category_' . $category->term_id);
+        $cat_number = $cat_number ? ' / ' . $cat_number : '';
+    ?>
         <li class="c-sidebar__item<?= ( $current_page ) ? ' c-sidebar__item--active' : ''; ?>">
             <?= !$current_page ? '<a href="' . get_category_link($category->term_id) . '">' : ''; ?>
                 <?php if($current_page) : ?>
-                    Kultur5 / <?= $key; ?> / <?= $category->name; ?>
+                    Kultur5<?= $cat_number; ?> / <?= $category->name; ?>
                 <?php else : ?>
-                    Kultur5 / <?= $key; ?><span> / <?= $category->name; ?></span>
+                    Kultur5<?= $cat_number; ?><span> / <?= $category->name; ?></span>
                 <?php endif; ?>
             <?= !$current_page ? '</a>' : ''; ?>
         </li>
