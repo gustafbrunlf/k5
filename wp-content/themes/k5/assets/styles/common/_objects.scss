@@ -68,6 +68,10 @@
                 float: right;
                 margin-left: auto;
             }
+            .c-project__image-title-hover[class] {
+                float: none;
+                margin-left: 5px;
+            }
 
             @media (max-width: $xs-screen) {
                 width: 50%;

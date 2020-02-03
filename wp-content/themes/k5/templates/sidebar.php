@@ -1,7 +1,7 @@
 <?php
     $args = [
         'orderby'   => 'name',
-        'order'     => 'DESC',
+        'order'     => 'ASC',
     ];
     $categories = get_categories($args);
 

@@ -28,6 +28,7 @@
         display: flex;
         padding: 0;
         list-style-type: none;
+        margin-bottom: 30px;
 
         li {
             flex: 1 0 auto;
@@ -47,6 +48,10 @@
 
         p {
             margin: 0;
+        }
+
+        @media (max-width: $xs-screen) {
+            margin-bottom: 20px;
         }
     }
 
@@ -137,10 +142,13 @@
                 }
             }
         }
+
+        @media (max-width: $xs-screen) {
+            justify-content: flex-end;
+        }
     }
     &-size-guide {
         display: none;
-        margin-top: 30px;
         margin-bottom: 50px;
 
         &__wrapper {
@@ -156,11 +164,13 @@
         }
         &__text {
             flex: 0 0 40%;
+            padding-left: 10px;
 
             @media (max-width: $xs-screen) {
                 flex: 0 0 70%;
                 order: 1;
                 padding-right: 15px;
+                padding-left: 0;
             }
         }
     }
