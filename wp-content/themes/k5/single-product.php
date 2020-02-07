@@ -50,39 +50,29 @@ endif;
                         </div>
                     </div>
                 </div>
-                <!-- <a href="<//?= wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0]; ?>" class="c-product__image--scale"> -->
-                    <img src="<?= wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0]; ?>" alt="<?= $title; ?>">
-                <!-- </a> -->
+                <?php if(false) : ?><!-- <a href="<//?= wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0]; ?>" class="c-product__image--scale"> --> <?php endif; ?>
+                    <img src="<?= wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0]; ?>" alt="<?= $title; ?>" class="t-margin-bottom" />
+                <?php if(false) : ?><!-- </a> --><?php endif; ?>
+                <?php $image2 = get_field('image_2');
+    				if( !empty($image2) ): ?>
+				        <img src="<?php echo $image2['url']; ?>" alt="<?php echo $image2['alt']; ?>" class="t-margin-bottom" />
+    			<?php endif; ?>
+
+    			<?php $image3 = get_field('image_3');
+    				if( !empty($image3) ): ?>
+    					<img src="<?php echo $image3['url']; ?>" alt="<?php echo $image3['alt']; ?>" class="t-margin-bottom" />
+    			<?php endif; ?>
+
+    			<?php $image4 = get_field('image_4');
+    				if( !empty($image4) ): ?>
+    					<img src="<?php echo $image4['url']; ?>" alt="<?php echo $image4['alt']; ?>" class="t-margin-bottom" />
+    			<?php endif; ?>
+
+    			<?php $image5 = get_field('image_5');
+    				if( !empty($image5) ): ?>
+    					<img src="<?php echo $image5['url']; ?>" alt="<?php echo $image5['alt']; ?>" class="t-margin-bottom" />
+    			<?php endif; ?>
             </div>
-
-			<?php $image2 = get_field('image_2');
-				if( !empty($image2) ): ?>
-				<div class="o-grid__column o-grid__column--small" data-size="6">
-					<img src="<?php echo $image2['url']; ?>" alt="<?php echo $image2['alt']; ?>" />
-				</div>
-			<?php endif; ?>
-
-			<?php $image3 = get_field('image_3');
-				if( !empty($image3) ): ?>
-				<div class="o-grid__column o-grid__column--small" data-size="6">
-					<img src="<?php echo $image3['url']; ?>" alt="<?php echo $image3['alt']; ?>" />
-				</div>
-			<?php endif; ?>
-
-			<?php $image4 = get_field('image_4');
-				if( !empty($image4) ): ?>
-				<div class="o-grid__column o-grid__column--small" data-size="6">
-					<img src="<?php echo $image4['url']; ?>" alt="<?php echo $image4['alt']; ?>" />
-				</div>
-			<?php endif; ?>
-
-			<?php $image5 = get_field('image_5');
-				if( !empty($image5) ): ?>
-				<div class="o-grid__column o-grid__column--small" data-size="6">
-					<img src="<?php echo $image5['url']; ?>" alt="<?php echo $image5['alt']; ?>" />
-				</div>
-			<?php endif; ?>
-
         </div>
     </div>
 </div>

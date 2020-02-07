@@ -43,13 +43,13 @@ if($grid = get_field('Grid')):
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
-                        <?php if(!$component['product'] && $component['text_block']): ?>
+                        <?php if(!$component['product'] && $component['text_block'] && !$component['text_blocks']): ?>
                             <div class="c-project__text-block">
                                 <?= $component['text_block']; ?>
                             </div>
                         <?php endif; ?>
                         <?php
-                            if(!$component['product'] && $component['text_blocks']):
+                            if(!$component['product'] && $component['text_blocks'] && !$component['text_block']):
                                 foreach ($component['text_blocks'] as $text) : ?>
                                     <div class="c-project__text-block c-project__text-block--<?= $text['margin']; ?>">
                                         <?= $text['text']; ?>
