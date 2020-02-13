@@ -257,6 +257,12 @@
         $(document).on("click", '.media_placeholder--close', function(event){
             $(this).parent().remove();
         });
+
+        $(document).on("click", '.c-subnav a', function(event){
+            event.preventDefault();
+            var aid = $(this).attr("href");
+            $('html,body').animate({scrollTop: $(aid).offset().top - 40},'slow');
+        });
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired

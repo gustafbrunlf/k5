@@ -32,7 +32,7 @@ endif;
             <div class="c-page-header__content<?= $video ? ' c-page-header__content--video' : ''; ?>"<?= $style && !$video ? ' style="' . $style . '"' : ''; ?>>
             	<?php
             	if( $video ) : ?>
-            		<video autoplay muted loop>
+            		<video poster="" autoplay muted loop playsinline>
             			<source src="<?= $video['url']; ?>"
             					type="video/webm">
             			<source src="<?= $video['url']; ?>"
