@@ -49,7 +49,7 @@
         $body_admin .= '<h1>New order: ' . $order . '</h1><br />';
         $body_admin .= '<p><b>Customer e-mail:</b> ' . $customer_email . '</p><br />';
         $body_admin .= $product_body;
-        $body_admin .= '<p><b>Shipping:</b> Standard 100 SEK</ br>';
+        $body_admin .= '<p><b>Shipping:</b> Standard</ br>';
         $body_admin .= '<p><b>The total of the order is:</b> ' . $order_total . '</p>';
         $body_admin .= '</body></html>';
 

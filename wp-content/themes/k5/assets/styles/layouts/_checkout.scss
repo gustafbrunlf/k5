@@ -243,6 +243,7 @@
         @media (max-width: $xs-screen) {
             display: flex;
             flex-flow: row wrap;
+            overflow: hidden;
 
             .o-grid__column {
                 width: 100%

@@ -6,7 +6,8 @@ if($grid = get_field('Grid')):
 <div class="o-width-limiter o-width-limiter--small">
 <?php endif; ?>
     <div class="o-grid<?= $grid_item['margin_top_bottom'] == 'sm' ? ' o-grid--small' : ''; ?><?= $grid_item['fullwidth_grid'] ? ' o-grid--no-margin' : ''; ?><?= $grid_item['margin_bottom_zero'] ? ' o-grid--no-margin-bottom' : ''; ?>">
-        <?php foreach($grid_item['row'] as $component) : ?>
+        <?php if($grid_item['row']) :
+            foreach($grid_item['row'] as $component) : ?>
                 <?php
                 if($prodID = $component['product']) :
                     $link = get_permalink($prodID);
@@ -63,7 +64,8 @@ if($grid = get_field('Grid')):
                     <?php endif; ?>
                 <?php endif; ?>
             </div>
-        <?php endforeach; ?>
+        <?php endforeach;
+        endif; ?>
     </div>
 <?php if(!$grid_item['fullwidth_grid']): ?>
 </div>

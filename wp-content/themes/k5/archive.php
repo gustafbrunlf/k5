@@ -53,7 +53,8 @@ endif;
         <div class="o-width-limiter o-width-limiter--small">
         <?php endif; ?>
             <div class="o-grid<?= $grid_item['margin_top_bottom'] == 'sm' ? ' o-grid--small' : ''; ?><?= $grid_item['fullwidth_grid'] ? ' o-grid--no-margin' : ''; ?>">
-                <?php foreach($grid_item['row'] as $component) : ?>
+                <?php if($grid_item['row']) :
+                    foreach($grid_item['row'] as $component) : ?>
                     <div class="o-grid__column<?= $grid_item['margin_images'] == 'sm' ? ' o-grid__column--small' : ''; ?>" data-size="<?= $component['width']; ?>">
                         <?php
                         if($prodID = $component['product']) :
@@ -103,7 +104,8 @@ endif;
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
-                <?php endforeach; ?>
+                <?php endforeach;
+                endif; ?>
             </div>
         <?php if(!$grid_item['fullwidth_grid']): ?>
         </div>

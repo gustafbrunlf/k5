@@ -17,6 +17,10 @@
 
             @media (max-width: $xs-screen) {
                 opacity: 1;
+
+                + span {
+                    margin-left: 18%;
+                }
             }
         }
         &.hover {
@@ -36,12 +40,14 @@
     &__image-wrapper {
         position: relative;
 
-        &:hover {
-            .c-project__image-original {
-                opacity: 0;
-            }
-            .c-project__image-hover {
-                opacity: 1;
+        @media (min-width: 1025px) {
+            &:hover {
+                .c-project__image-original {
+                    opacity: 0;
+                }
+                .c-project__image-hover {
+                    opacity: 1;
+                }
             }
         }
     }

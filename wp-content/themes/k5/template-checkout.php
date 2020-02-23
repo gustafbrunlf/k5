@@ -71,10 +71,8 @@ $total_price = 0;
                                             <option value="standard" selected>Standard shipping</option>
                                         </select>
                                     </div>
-                                    <p class="c-checkout__item-price-shipping"><span>100</span> SEK</p>
                                 </div>
                             </div>
-                            <?php $total_price += 100; ?>
                         <?php endif; ?>
                     </div>
                     <div class="o-grid__column o-grid__column--small" data-size="6">

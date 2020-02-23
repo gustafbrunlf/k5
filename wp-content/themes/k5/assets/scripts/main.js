@@ -49,28 +49,28 @@
             $('body').removeClass('no-scroll');
         });
 
-        $('<div/>', {
-            class: 'popup popup--image',
-            html: '<div class="popup__wrapper"></div>'
-        }).insertAfter('.footer');
-
-        $(document).on("click", '.c-product__image--scale', function(event){
-            event.preventDefault();
-            var imageUrl = $(this).attr('href');
-            var popupWrapper = $('.popup--image .popup__wrapper');
-            popupWrapper.html('');
-            if(imageUrl) {
-                var fullImg = $('<img class="popup__image">'); //Equivalent: $(document.createElement('img'))
-                fullImg.attr('src', imageUrl);
-                fullImg.appendTo(popupWrapper);
-            }
-            $('.popup--image').addClass('popup__open');
-            $('<div/>', {
-                class: 'popup__close',
-                html: '<span class="t-visually-hidden">Close popup</span>'
-            }).appendTo(popupWrapper);
-            $('body').addClass('no-scroll');
-        });
+        // $('<div/>', {
+        //     class: 'popup popup--image',
+        //     html: '<div class="popup__wrapper"></div>'
+        // }).insertAfter('.footer');
+        //
+        // $(document).on("click", '.c-product__image--scale', function(event){
+        //     event.preventDefault();
+        //     var imageUrl = $(this).attr('href');
+        //     var popupWrapper = $('.popup--image .popup__wrapper');
+        //     popupWrapper.html('');
+        //     if(imageUrl) {
+        //         var fullImg = $('<img class="popup__image">'); //Equivalent: $(document.createElement('img'))
+        //         fullImg.attr('src', imageUrl);
+        //         fullImg.appendTo(popupWrapper);
+        //     }
+        //     $('.popup--image').addClass('popup__open');
+        //     $('<div/>', {
+        //         class: 'popup__close',
+        //         html: '<span class="t-visually-hidden">Close popup</span>'
+        //     }).appendTo(popupWrapper);
+        //     $('body').addClass('no-scroll');
+        // });
 
         function setCookie(name,value,days) {
             var expires = "";
@@ -141,8 +141,6 @@
                     totalQty += parseInt(qty);
                 }
             });
-
-            totalPrice += 100;
 
             $('#checkout-total-hidden').val(totalPrice);
             $('#checkout-total').val(totalPrice + ' SEK');
