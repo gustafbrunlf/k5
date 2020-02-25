@@ -26,8 +26,18 @@ if($grid = get_field('Grid')):
                 endif;
 
                 $anchor_link = isset($component['anchor_link']) ? 'id="' . $component['anchor_link'] . '" ' : '';
+
+                $text_size = '';
+                if($component['text_size'] == 'lg' || $component['text_size'] == 'xs') {
+                    if($component['text_size'] == 'lg') {
+                        $text_size = ' o-grid__column--lg-text';
+                    }
+                    if($component['text_size'] == 'xs') {
+                        $text_size = ' o-grid__column--xs-text';
+                    }
+                }
             ?>
-            <div <?= $anchor_link; ?>class="o-grid__column<?= $grid_item['margin_images'] == 'sm' ? ' o-grid__column--small' : ''; ?><?= $component['text_size'] != 'sm' ? ' o-grid__column--lg-text' : ''; ?>" data-size="<?= $component['width']; ?>">
+            <div <?= $anchor_link; ?>class="o-grid__column<?= $grid_item['margin_images'] == 'sm' ? ' o-grid__column--small' : ''; ?><?= $text_size; ?>" data-size="<?= $component['width']; ?>">
                 <?php if($title || $image || $component['text_block'] || $component['text_blocks']) : ?>
                     <?php if($link): ?>
                     <a href="<?= $link; ?>" class="c-project__image">
@@ -46,18 +56,20 @@ if($grid = get_field('Grid')):
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
-                        <?php if(!$component['product'] && $component['text_block'] && !$component['text_blocks']): ?>
+                        <?php if(!$component['product'] && $component['text_block'] && !$component['text_blocks_state']): ?>
                             <div class="c-project__text-block">
                                 <?= $component['text_block']; ?>
                             </div>
                         <?php endif; ?>
                         <?php
-                            if(!$component['product'] && $component['text_blocks'] && !$component['text_block']):
-                                foreach ($component['text_blocks'] as $text) : ?>
+                            if(!$component['product'] && $component['text_blocks_state'] && !$component['text_block']):
+                                if($component['text_blocks']):
+                                    foreach ($component['text_blocks'] as $text) : ?>
                                     <div class="c-project__text-block c-project__text-block--<?= $text['margin']; ?>">
                                         <?= $text['text']; ?>
                                     </div>
                         <?php endforeach;
+                            endif;
                         endif; ?>
                     <?php if($link): ?>
                     </a>

@@ -101,6 +101,11 @@
                 }
             }
         }
+        &--xs-text {
+            h3, h3 > span, p, p > span, span, strong, i, b, em {
+                font: $font-sz6;
+            }
+        }
     }
 
     @media (min-width: 768px) {

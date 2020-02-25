@@ -43,11 +43,11 @@
             });
         }
 
-        $(document).on("click", '.popup__close, .popup__image', function(event){
-            console.log(event);
-            $('.popup').removeClass('popup__open');
-            $('body').removeClass('no-scroll');
-        });
+        // $(document).on("click", '.popup__close, .popup__image', function(event){
+        //     console.log(event);
+        //     $('.popup').removeClass('popup__open');
+        //     $('body').removeClass('no-scroll');
+        // });
 
         // $('<div/>', {
         //     class: 'popup popup--image',
