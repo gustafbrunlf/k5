@@ -167,13 +167,14 @@
 
                 var total = $('#checkout-total').val();
                 var email = $('#checkout-email').val();
+                var shipping = $('.c-checkout__item-shipping select').val();
                 var error = '<h3 class="c-checkout__error">Something went wrong, try again.';
 
                 $.ajax({
                     type:"post",
                     dataType:"json",
                     url: ajaxurl,
-                    data: {action: 'submitForm',email: email, total: total, data: $(this).serializeArray()},
+                    data: {action: 'submitForm',email: email, total: total, shipping: shipping, data: $(this).serializeArray()},
                     success: function(data) {
                         if(data.success) {
                             $.ajax({

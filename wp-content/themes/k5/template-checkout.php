@@ -45,13 +45,13 @@ $total_price = 0;
                                         <?php endif; ?>
                                     </div>
                                     <div class="c-checkout__item-size">
-                                        <select name="size">
-                                            <?php if($sizes = get_field('sizes', $product->id)): ?>
+                                        <?php if($sizes = get_field('sizes', $product->id)): ?>
+                                            <select name="size">
                                                 <?php foreach ($sizes as $size) : ?>
                                                     <option value="<?= $size["size"]; ?>" <?= $product->size == $size["size"] ? ' selected' : ''; ?>><?= $size["size"]; ?></option>
-                                            <?php endforeach;
-                                            endif; ?>
-                                        </select>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="c-checkout__item-qty">
                                         <select name="qty" data-price="<?= get_field('price', $product->id); ?>">
@@ -68,7 +68,9 @@ $total_price = 0;
                                 <div class="c-checkout__item">
                                     <div class="c-checkout__item-shipping">
                                         <select name="shipping">
-                                            <option value="standard" selected>Standard shipping</option>
+                                            <option value="Sweden" selected>Shipping Sweden</option>
+                                            <option value="Europe">Shipping Europe</option>
+                                            <option value="World">Shipping World</option>
                                         </select>
                                     </div>
                                 </div>
