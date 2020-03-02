@@ -6,6 +6,8 @@
         $order_total = $_POST['total'];
         $product_data = $_POST['data'];
         $order_shipping = $_POST['shipping'];
+        $shipping_total = $_POST['shipping_total'];
+        $currency = $_POST['currency'];
 
         $count_products = count($product_data);
         unset($product_data[$count_products-1]);
@@ -15,18 +17,19 @@
 
         $product_body = '<table><thead>';
         $product_body .= '<tr>';
-        $product_body .= '<th>Product name</th>';
-        $product_body .= '<th>Size</th>';
-        $product_body .= '<th>Qty</th>';
-        $product_body .= '<th>Price</th>';
+        $product_body .= '<th style="text-align:left;">Product name</th>';
+        $product_body .= '<th style="text-align:left;">Size</th>';
+        $product_body .= '<th style="text-align:left;">Qty</th>';
+        $product_body .= '<th style="text-align:left;">Price</th>';
         $product_body .= '</tr></thead>';
         $product_body .= '<tbody>';
         $j = 0;
         $product_sql = '';
         $product_body .= '<tr>';
+
         foreach ($product_data as $data) {
             if($data['name'] != 'email2' || $data['name'] != 'shipping' || $data['value'] != 'standard') {
-                $product_body .= '<td>' . $data['value'] . '</td>';
+                $product_body .= '<td style="padding:15px 15px 15px 0px;">' . $data['value'] . ($data['name'] == 'price' ? ' ' . $currency : '') . '</td>';
                 $j++;
 
                 $product_sql .= $data['value'] . ', ';
@@ -50,8 +53,8 @@
         $body_admin .= '<h1>New order: ' . $order . '</h1><br />';
         $body_admin .= '<p><b>Customer e-mail:</b> ' . $customer_email . '</p><br />';
         $body_admin .= $product_body;
-        $body_admin .= '<p><b>Shipping:</b> ' . $order_shipping . '</ br>';
-        $body_admin .= '<p><b>The total of the order is:</b> ' . $order_total . '</p>';
+        $body_admin .= '<p><b>Shipping:</b> ' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</ br>';
+        $body_admin .= '<p><b>The total of the order is:</b> ' . $order_total . ' ' . $currency . '</p>';
         $body_admin .= '</body></html>';
 
         wp_mail( $admin_email, $admin_subject, $body_admin, $headers );
@@ -59,8 +62,8 @@
         $body_customer = '<html><body>';
         $body_customer .= '<h1>Thank you for your order</h1>';
         $body_customer .= $product_body;
-        $body_customer .= '<p><b>Shipping:</b> ' . $order_shipping . '</ br>';
-        $body_customer .= '<p><b>The total of your order is:</b> ' . $order_total . '</p>';
+        $body_customer .= '<p><b>Shipping:</b> ' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</ br>';
+        $body_customer .= '<p><b>The total of your order is:</b> ' . $order_total . ' ' . $currency . '</p>';
         $body_customer .= '</body></html>';
 
         $mail = wp_mail( $customer_email, $customer_subject, $body_customer, $headers );

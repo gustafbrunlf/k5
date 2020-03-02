@@ -60,7 +60,7 @@ $total_price = 0;
                                             <?php endfor; ?>
                                         </select>
                                     </div>
-                                    <p class="c-checkout__item-price"><span><?= get_field('price', $product->id); ?></span> SEK</p>
+                                    <p class="c-checkout__item-price" data-price-sek="<?= get_field('price', $product->id); ?>" data-price-eur="<?= get_field('price_europe', $product->id); ?>"><span><?= get_field('price', $product->id); ?></span> SEK</p>
                                     <input class="c-checkout__item-price--hidden" type="hidden" name="price" value="<?= get_field('price', $product->id); ?>">
                                 </div>
                                 <?php $total_price += intval(get_field('price', $product->id)); ?>
@@ -68,13 +68,16 @@ $total_price = 0;
                                 <div class="c-checkout__item">
                                     <div class="c-checkout__item-shipping">
                                         <select name="shipping">
-                                            <option value="Sweden" selected>Shipping Sweden</option>
-                                            <option value="Europe">Shipping Europe</option>
-                                            <option value="World">Shipping World</option>
+                                            <option value="Sweden" data-amount="<?= get_field('shipping_sweden', 'option'); ?>" selected>Shipping Sweden</option>
+                                            <option value="Europe" data-amount="<?= get_field('shipping_europe', 'option'); ?>">Shipping Europe</option>
+                                            <option value="World" data-amount="<?= get_field('shipping_world', 'option'); ?>">Shipping World</option>
                                         </select>
                                     </div>
+                                    <p class="c-checkout__item-price-shipping"><span><?= get_field('shipping_sweden', 'option'); ?></span> SEK</p>
                                 </div>
                             </div>
+                            <?php $total_price += intval(get_field('shipping_sweden', 'option')); ?>
+
                         <?php endif; ?>
                     </div>
                     <div class="o-grid__column o-grid__column--small" data-size="6">
@@ -90,6 +93,8 @@ $total_price = 0;
                             </label>
                             <label for="checkout-email"><span>Total</span>
                                 <input type="text" id="checkout-total" value="<?= $total_price; ?> SEK" disabled>
+                                <input type="hidden" id="checkout-currency" value="SEK">
+                                <input type="hidden" id="checkout-total-shipping" value="<?= get_field('shipping_sweden', 'option'); ?>">
                                 <input type="hidden" id="checkout-total-hidden" value="<?= $total_price; ?>">
                             </label>
                         </div>
