@@ -51,6 +51,8 @@ $total_price = 0;
                                                     <option value="<?= $size["size"]; ?>" <?= $product->size == $size["size"] ? ' selected' : ''; ?>><?= $size["size"]; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
+                                        <?php else: ?>
+                                            <input type="hidden" name="size" value="One size">
                                         <?php endif; ?>
                                     </div>
                                     <div class="c-checkout__item-qty">
@@ -63,6 +65,7 @@ $total_price = 0;
                                     <p class="c-checkout__item-price" data-price-sek="<?= get_field('price', $product->id); ?>" data-price-eur="<?= get_field('price_europe', $product->id); ?>"><span><?= get_field('price', $product->id); ?></span> SEK</p>
                                     <input class="c-checkout__item-price--hidden" type="hidden" name="price" value="<?= get_field('price', $product->id); ?>">
                                 </div>
+                                <input type="hidden" name="img" value="<?= wp_get_attachment_image_src(get_post_thumbnail_id($product->id), 'large')[0]; ?>">
                                 <?php $total_price += intval(get_field('price', $product->id)); ?>
                             <?php endforeach; ?>
                                 <div class="c-checkout__item">

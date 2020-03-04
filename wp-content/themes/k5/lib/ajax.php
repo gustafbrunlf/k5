@@ -30,10 +30,15 @@
                 }
                 if($data['name'] == 'price') {
                     $name = 'Price';
-                    $data['value'] = $data['value'] . ' SEK';
+                    $data['value'] = $data['value'] . ' ' . $currency;
                 }
-                $product_body .= '<tr style="width:200px;"><td><p><b>' . $name . '</b></p></td>';
-                $product_body .= '<td><p><b>' . $data['value'] . '</b></p></td></tr>';
+                if($data['name'] == 'img') {
+                    $product_body .= '<tr><td style="width:200px;padding-right:20px;padding-bottom:10px;">';
+                    $product_body .= '<img src="' . $data['value'] . '" width="200px;" style="width:200px;"/></td></tr>';
+                } else {
+                    $product_body .= '<tr><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>' . $name . '</b></p></td>';
+                    $product_body .= '<td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>' . $data['value'] . '</b></p></td></tr>';
+                }
             }
         }
         $product_body .= '</tbody></table>';
@@ -46,20 +51,23 @@
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
         $body_admin = '<html><body>';
         $body_admin .= '<h1>New order: ' . $order . '</h1><br />';
-        $body_admin .= '<p><b>Customer e-mail:</b> ' . $customer_email . '</p><br />';
+        $body_admin .= '<p style="margin:0;"><b>Customer e-mail:</b> ' . $customer_email . '</p><br />';
         $body_admin .= $product_body;
-        $body_admin .= '<p><b>Shipping:</b> ' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</ br>';
-        $body_admin .= '<p><b>The total of the order is:</b> ' . $order_total . ' ' . $currency . '</p>';
+        $body_admin .= '<p style="margin:0;"><b>Shipping:</b> ' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</ br>';
+        $body_admin .= '<p style="margin:0;"><b>The total of the order</b> ' . $order_total . ' ' . $currency . '</p>';
         $body_admin .= '</body></html>';
 
         wp_mail( $admin_email, $admin_subject, $body_admin, $headers );
 
         $body_customer = '<html><body>';
-        $body_customer .= '<img src="https://www.kultur5.com/assets/images/logo.jpg" width="200" height="200"></ br>';
+        $body_customer .= '<img src="https://www.kultur5.com/wp-content/uploads/2020/03/logo-scaled.jpg" width="200" style="width:200px;"></ br>';
         $body_customer .= '<h1>Thank you for your order</h1>';
         $body_customer .= $product_body;
-        $body_customer .= '<p><b>Shipping:</b> ' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</ br>';
-        $body_customer .= '<p><b>The total of your order is:</b> ' . $order_total . ' ' . $currency . '</p>';
+        $body_customer .= '<table><tbody>';
+        $body_customer .= '<tr><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>Shipping</b></td><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</b></p></td></tr>';
+        $body_customer .= '<tr><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>The total of your order</b></p></td><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>' . $order_total . ' ' . $currency . '</b></p></td></tr>';
+        $body_customer .= '<tr><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b><p style="margin:0;"><a style="color:#000;" href="mailto:contact@kultur5.com">contact@kultur5.com</a></p></b></p></td></tr>';
+        $body_customer .= '</table></tbody>';
         $body_customer .= '</body></html>';
 
         $mail = wp_mail( $customer_email, $customer_subject, $body_customer, $headers );

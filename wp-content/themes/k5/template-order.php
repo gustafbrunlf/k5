@@ -8,7 +8,7 @@
     <div class="o-width-limiter o-width-limiter--small">
         <div class="o-grid o-grid--small">
             <div class="o-grid__column o-grid__column--small" data-size="6">
-                <h2>Thank you!</h2>
+                <h2>Thank you</h2>
             </div>
             <div class="o-grid__column o-grid__column--small" data-size="6">
                 <?= the_content(); ?>
