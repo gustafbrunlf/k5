@@ -5,6 +5,9 @@
         $customer_email = $_POST['email'];
         $order_total = $_POST['total'];
         $product_data = $_POST['data'];
+        $order_shipping = $_POST['shipping'];
+        $shipping_total = $_POST['shipping_total'];
+        $currency = $_POST['currency'];
 
         $count_products = count($product_data);
         unset($product_data[$count_products-1]);
@@ -45,23 +48,19 @@
         $body_admin .= '<h1>New order: ' . $order . '</h1><br />';
         $body_admin .= '<p><b>Customer e-mail:</b> ' . $customer_email . '</p><br />';
         $body_admin .= $product_body;
-        $body_admin .= '<p><b>Shipping:</b> Standard</ br>';
-        $body_admin .= '<p><b>The total of the order is:</b> ' . $order_total . '</p>';
+        $body_admin .= '<p><b>Shipping:</b> ' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</ br>';
+        $body_admin .= '<p><b>The total of the order is:</b> ' . $order_total . ' ' . $currency . '</p>';
         $body_admin .= '</body></html>';
 
         wp_mail( $admin_email, $admin_subject, $body_admin, $headers );
 
-        $actual_link = "http://$_SERVER[HTTP_HOST]";
-
         $body_customer = '<html><body>';
-        $body_customer .= '<img src="' . $actual_link . '/assets/images/logo.jpg" width="200" height="200"></ br>';
+        $body_customer .= '<img src="https://www.kultur5.com/assets/images/logo.jpg" width="200" height="200"></ br>';
         $body_customer .= '<h1>Thank you for your order</h1>';
         $body_customer .= $product_body;
-        $body_customer .= '<p><b>Shipping:</b> Standard</ br>';
-        $body_customer .= '<p><b>The total of your order is:</b> ' . $order_total . '</p>';
+        $body_customer .= '<p><b>Shipping:</b> ' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</ br>';
+        $body_customer .= '<p><b>The total of your order is:</b> ' . $order_total . ' ' . $currency . '</p>';
         $body_customer .= '</body></html>';
-
-        echo "<pre style='word-spacing:15px; line-height:1.5; font-size:18px;'>";var_dump($actual_link);echo"</pre>";
 
         $mail = wp_mail( $customer_email, $customer_subject, $body_customer, $headers );
 

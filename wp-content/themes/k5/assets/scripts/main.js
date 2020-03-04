@@ -142,8 +142,10 @@
                 }
             });
 
+            totalPrice += parseInt($('.c-checkout__item-shipping select').find(':selected').data('amount'));
+
             $('#checkout-total-hidden').val(totalPrice);
-            $('#checkout-total').val(totalPrice + ' SEK');
+            $('#checkout-total').val(totalPrice + ' ' + $('#checkout-currency').val());
             $('.c-header__cart-qty').text(totalQty);
         }
 
@@ -152,8 +154,51 @@
             var qty = $(this).val();
             var price = $(this).data('price');
             var total = qty * price;
+
             $(this).parent().siblings('.c-checkout__item-price').find('span').html(total);
             $(this).parent().siblings('.c-checkout__item-price--hidden').val(total);
+
+            updateCartTotals();
+        });
+
+        $(document).on("change", '.c-checkout__item-shipping select', function(event){
+            event.preventDefault();
+
+            var shipping_cost = $(this).find(':selected').data('amount');
+
+            $('.c-checkout__item-price-shipping').html(shipping_cost + ' SEK');
+
+            if($(this).val() !== 'Sweden') {
+                $('#checkout-currency').val('EUR');
+                $('.c-checkout__item-price-shipping').html(shipping_cost + ' EUR');
+            } else {
+                $('#checkout-currency').val('SEK');
+                $('.c-checkout__item-price-shipping').html(shipping_cost + ' SEK');
+            }
+
+            $('.c-checkout__form .c-checkout__item').each(function() {
+                if($(this).find('.c-checkout__item-price').length > 0) {
+                    var item_qty = $(this).find('.c-checkout__item-qty select').val();
+
+                    if($('#checkout-currency').val() === 'SEK') {
+                        var price_sek = $(this).find('.c-checkout__item-price').data('price-sek');
+                        var total_sek = price_sek * item_qty;
+
+                        $(this).find('.c-checkout__item-price').html('<span>' + total_sek + '</span> SEK');
+                        $(this).find('.c-checkout__item-price--hidden').val(total_sek);
+                        $('.c-checkout__item-qty select').data('price', price_sek);
+                    } else {
+                        var price_eur = $(this).find('.c-checkout__item-price').data('price-eur');
+                        var total_eur = price_eur * item_qty;
+
+                        $(this).find('.c-checkout__item-price').html('<span>' + total_eur + '</span> EUR');
+                        $(this).find('.c-checkout__item-price--hidden').val(total_eur);
+                        $('.c-checkout__item-qty select').data('price', price_eur);
+                    }
+                }
+            });
+
+            $('#checkout-total-shipping').val(shipping_cost);
 
             updateCartTotals();
         });
@@ -165,15 +210,27 @@
                 $('#checkout-email').attr('disabled', 'disabled');
                 $('.c-checkout__button').attr('disabled', 'disabled');
 
-                var total = $('#checkout-total').val();
+                var total = $('#checkout-total-hidden').val();
                 var email = $('#checkout-email').val();
+                var shipping = $('.c-checkout__item-shipping select').val();
+                var shipping_total = $('#checkout-total-shipping').val();
+                var currency = $('#checkout-currency').val();
+
                 var error = '<h3 class="c-checkout__error">Something went wrong, try again.';
 
                 $.ajax({
                     type:"post",
                     dataType:"json",
                     url: ajaxurl,
-                    data: {action: 'submitForm',email: email, total: total, data: $(this).serializeArray()},
+                    data: {
+                        action: 'submitForm',
+                        email: email,
+                        total: total,
+                        shipping: shipping,
+                        shipping_total: shipping_total,
+                        currency: currency,
+                        data: $(this).serializeArray()
+                    },
                     success: function(data) {
                         if(data.success) {
                             $.ajax({
