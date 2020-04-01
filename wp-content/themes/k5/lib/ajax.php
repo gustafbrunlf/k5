@@ -3,6 +3,10 @@
         $results['success'] = false;
 
         $customer_email = $_POST['email'];
+        $customer_name = $_POST['name'];
+        $customer_address = $_POST['address'];
+        $customer_zip = $_POST['zip'];
+        $customer_country = $_POST['country'];
         $order_total = $_POST['total'];
         $product_data = $_POST['data'];
         $order_shipping = $_POST['shipping'];
@@ -11,14 +15,13 @@
 
         $count_products = count($product_data);
         unset($product_data[$count_products-1]);
-        unset($product_data[$count_products-2]);
 
         $order = rand(100000, 1000000);
 
         $product_body = '<table>';
         $product_body .= '<tbody>';
         foreach ($product_data as $data) {
-            if($data['name'] != 'email2' || $data['name'] != 'shipping' || $data['value'] != 'standard') {
+            if($data['name'] != 'email2' || $data['value'] != 'standard') {
                 if (strpos($data['name'], 'product') !== false) {
                     $name = 'Product name';
                 }
@@ -42,16 +45,19 @@
             }
         }
         $product_body .= '</tbody></table>';
-
         $admin_email = 'order@kultur5.com';
         $customer_subject = 'Kultur5 - Order confirmation: Order ' . $order;
         $admin_subject = 'Kultur5 : New order ' . $order;
         $headers = "From: order@kultur5.com\r\n";
-        $headers .= "Reply-To: no-reply@gustafbrunlof.se\r\n";
+        $headers .= "Reply-To: no-reply@kultur5.com\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
         $body_admin = '<html><body>';
         $body_admin .= '<h1>New order: ' . $order . '</h1><br />';
         $body_admin .= '<p style="margin:0;"><b>Customer e-mail:</b> ' . $customer_email . '</p><br />';
+        $body_admin .= '<p style="margin:0;"><b>Customer name:</b> ' . $customer_name . '</p><br />';
+        $body_admin .= '<p style="margin:0;"><b>Customer address:</b> ' . $customer_address . '</p><br />';
+        $body_admin .= '<p style="margin:0;"><b>Customer zip:</b> ' . $customer_zip . '</p><br />';
+        $body_admin .= '<p style="margin:0;"><b>Customer country:</b> ' . $customer_country . '</p><br />';
         $body_admin .= $product_body;
         $body_admin .= '<p style="margin:0;"><b>Shipping:</b> ' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</ br>';
         $body_admin .= '<p style="margin:0;"><b>The total of the order</b> ' . $order_total . ' ' . $currency . '</p>';

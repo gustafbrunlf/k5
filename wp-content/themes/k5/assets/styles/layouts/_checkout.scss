@@ -1,6 +1,11 @@
 .c-checkout {
     position: relative;
 
+    &__form {
+        display: inline-block;
+        position: relative;
+    }
+
     &__customer {
         display: flex;
 
@@ -18,19 +23,24 @@
             }
 
             @media (max-width: $xs-screen) {
-                order: 1;
                 font: $font-sz4;
+                flex: 1 0 100%;
+                margin-top: 10px;
+                margin-bottom: 10px;
 
-                &:not(:first-child) {
+                span {
+                    display: block;
+                    width: 100%;
+                }
+
+                &.checkout-total-label {
                     display: flex;
                     justify-content: space-between;
                 }
 
                 &:first-child {
-                    order: 2;
                     flex: 1 0 100%;
-                    font: $font-sz5;
-                    margin-top: 40px;
+                    padding-right: 0;
                 }
             }
         }
@@ -42,12 +52,16 @@
             margin-top: 20px;
             font: $font-sz2;
 
-            &[type="email"] {
+            &[type] {
                 border-bottom: 1px solid $black;
 
                 @media (max-width: $xs-screen) {
                     font: $font-sz2-2;
                 }
+            }
+
+            &#checkout-total {
+                border:0;
             }
 
             &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -83,7 +97,12 @@
     }
     &__button {
         font: $font-sz2;
-        margin-top: 40px;
+
+        @media (min-width: 993px) {
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 27px;
+        }
 
         @media (max-width: 992px) {
             font: $font-sz4;

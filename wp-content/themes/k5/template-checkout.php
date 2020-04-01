@@ -89,12 +89,28 @@ $total_price = 0;
                         </div>
                     </div>
                     <div class="o-grid__column o-grid__column--small" data-size="6">
+                        <div class="c-checkout__customer c-checkout__customer--info">
+                            <label for="checkout-name"><span>Name</span>
+                                <input type="text" name="fullname" placeholder="Name" id="checkout-name" required="required">
+                            </label>
+                            <label for="checkout-zip"><span>Zip</span>
+                                <input type="text" name="zip" placeholder="Zip" id="checkout-zip" required="required">
+                            </label>
+                        </div>
+                        <div class="c-checkout__customer c-checkout__customer--info">
+                            <label for="checkout-address"><span>Address</span>
+                                <input type="text" name="address" placeholder="Address" id="checkout-address" required="required">
+                            </label>
+                            <label for="checkout-country"><span>Country</span>
+                                <input type="text" name="country" placeholder="Country" id="checkout-country" required="required">
+                            </label>
+                        </div>
                         <div class="c-checkout__customer">
                             <label for="checkout-email"><span>Type your email</span>
                                 <input type="email" name="email" placeholder="Email" id="checkout-email" required="required">
                                 <input type="email" name="email2" placeholder="Email2" id="checkout-email-alt">
                             </label>
-                            <label for="checkout-email"><span>Total</span>
+                            <label for="checkout-total" class="checkout-total-label"><span>Total</span>
                                 <input type="text" id="checkout-total" value="<?= $total_price; ?> SEK" disabled>
                                 <input type="hidden" id="checkout-currency" value="SEK">
                                 <input type="hidden" id="checkout-total-shipping" value="<?= get_field('shipping_sweden', 'option'); ?>">
@@ -102,7 +118,7 @@ $total_price = 0;
                             </label>
                         </div>
                     </div>
-                    <div class="o-grid__column o-grid__column--small" data-size="6">
+                    <div class="o-grid__column o-grid__column--small t-static" data-size="6">
                         <button class="button c-checkout__button" name="button" disabled>Send request</button>
                     </div>
                 </form>

@@ -19,14 +19,22 @@ endif;
         <div class="o-grid o-grid--small">
             <div class="o-grid__column o-grid__column--small" data-size="6">
                 <h2 class="c-product__title"><?= the_title(); ?><?= get_field('price') ? ' <span>/</span> ' . get_field('price') . ' SEK' : ''; ?></h2>
-                <button type="button" name="add-to-bag" data-id="<?= get_the_ID(); ?>" class="button c-product__button c-product__button--add c-product__button--xs">Add to bag</button>
+                <?php if(!get_field('non_purchasable')) : ?>
+                    <button type="button" name="add-to-bag" data-id="<?= get_the_ID(); ?>" class="button c-product__button c-product__button--add c-product__button--xs">Add to bag</button>
+                <?php else : ?>
+                    <h4 class="c-product__title c-product__button--xs"><?= get_field('non_purchasable_text'); ?></h4>
+                <?php endif; ?>
                 <div class="c-product__description">
                     <?= the_content(); ?>
                 </div>
             </div>
 
             <div class="o-grid__column o-grid__column--small" data-size="6">
-                <button type="button" name="add-to-bag" data-id="<?= get_the_ID(); ?>" class="button c-product__button c-product__button--add c-product__button--xl">Add to bag</button>
+                <?php if(!get_field('non_purchasable')) : ?>
+                    <button type="button" name="add-to-bag" data-id="<?= get_the_ID(); ?>" class="button c-product__button c-product__button--add c-product__button--xl">Add to bag</button>
+                <?php else : ?>
+                    <h4 class="c-product__title c-product__button--xl"><?= get_field('non_purchasable_text'); ?></h4>
+                <?php endif; ?>
                 <ul class="c-product__info">
                     <li>
                         <button type="button" name="button" class="button c-product__button c-product__button--size">Size guide</button>

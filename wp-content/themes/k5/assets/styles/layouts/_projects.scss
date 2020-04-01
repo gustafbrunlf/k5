@@ -4,11 +4,7 @@
         margin: 0 0 10px;
 
         span {
-            margin-left: 40%;
-
-            @media (max-width: $xs-screen) {
-                margin-left: 35%;
-            }
+            margin-left: 35%;
         }
         &-hover[class] {
             opacity: 0;
