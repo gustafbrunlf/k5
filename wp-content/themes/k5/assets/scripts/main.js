@@ -328,9 +328,13 @@
         });
 
         $(document).on("click", '.c-subnav a', function(event){
-            event.preventDefault();
-            var aid = $(this).attr("href");
-            $('html,body').animate({scrollTop: $(aid).offset().top - 40},'slow');
+            var href=$(this).prop('href');
+            if (href.indexOf('#') > -1) {
+                console.log("Contains questionmark");
+                event.preventDefault();
+                var aid = $(this).attr("href");
+                $('html,body').animate({scrollTop: $(aid).offset().top - 40},'slow');
+            }
         });
       },
       finalize: function() {

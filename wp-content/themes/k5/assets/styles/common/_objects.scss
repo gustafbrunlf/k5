@@ -60,6 +60,10 @@
         }
         &[data-size="4"] {
             @extend .col-sm-4;
+
+            .c-project__image-title span:not(.c-project__image-title-hover) {
+                margin-left: 15%;
+            }
         }
         &[data-size="3"] {
             @extend .col-sm-3;
