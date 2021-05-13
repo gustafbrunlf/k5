@@ -68,19 +68,27 @@
     }
     &__link {
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
         margin: 0;
-        padding: 15px;
         font-size: 28px;
 
-        &--right {
+        span {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 15px;
+        }
+
+        &--right span {
             right: 0;
             @media (min-width: $xs-screen) {
                 padding-right: 45px;
             }
         }
-        &--left {
+        &--left span {
             left: 0;
             @media (min-width: $xs-screen) {
                 padding-left: 45px;
