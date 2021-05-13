@@ -23,6 +23,6 @@
     }
   },
   "config": {
-    "devUrl": "http://localhost:8888/k5/"
+    "devUrl": "http://localhost:8888/jmsh/"
   }
 }

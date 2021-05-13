@@ -43,14 +43,6 @@
             });
         }
 
-        $('.c-project__slideshow').slick({
-          dots: true,
-          infinite: true,
-          speed: 300,
-          slidesToShow: 1,
-          arrows: false
-        });
-
         // $(document).on("click", '.popup__close, .popup__image', function(event){
         //     console.log(event);
         //     $('.popup').removeClass('popup__open');
@@ -360,7 +352,7 @@
       }
     },
     // About us page, note the change from about-us to about_us.
-    'about': {
+    'main': {
       init: function() {
         // JavaScript to be fired on the about us page
       }

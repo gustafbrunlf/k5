@@ -36,49 +36,53 @@ endif;
                     <h4 class="c-product__title c-product__button--xl"><?= get_field('non_purchasable_text'); ?></h4>
                 <?php endif; ?>
                 <ul class="c-product__info">
-                    <li>
-                        <button type="button" name="button" class="button c-product__button c-product__button--size">Size guide</button>
-                    </li>
+                    <?php if(!get_field('hide_size_guide')) : ?>
+                        <li>
+                            <button type="button" name="button" class="button c-product__button c-product__button--size">Size guide</button>
+                        </li>
+                    <?php endif; ?>
                     <?php if($sizes = get_field('sizes')): ?>
                         <li class="c-product__sizes">
                         <?php foreach ($sizes as $key => $size) : ?>
-                            <input type="radio" id="size-<?= $key; ?>" class="c-product__size" name="size" value="<?= $size['size'] ?>" <?= $key == 0 ? ' checked' : ''; ?>>
                             <label for="size-<?= $key; ?>"><?= $size['size']; ?></label>
+                            <input type="radio" id="size-<?= $key; ?>" class="c-product__size" name="size" value="<?= $size['size'] ?>" <?= $key == 0 ? ' checked' : ''; ?>>
                         <?php endforeach; ?>
                         </li>
                     <?php endif; ?>
                 </ul>
-                <div class="c-product-size-guide">
-                    <div class="c-product-size-guide__wrapper">
-                        <div class="c-product-size-guide__sizes">
-                            <?= get_field('sizes', 'option'); ?>
-                        </div>
-                        <div class="c-product-size-guide__text">
-                            <?= get_field('explanation', 'option'); ?>
+                <?php if(!get_field('hide_size_guide')) : ?>
+                    <div class="c-product-size-guide">
+                        <div class="c-product-size-guide__wrapper">
+                            <div class="c-product-size-guide__sizes">
+                                <?= get_field('sizes', 'option'); ?>
+                            </div>
+                            <div class="c-product-size-guide__text">
+                                <?= get_field('explanation', 'option'); ?>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
                 <?php if(false) : ?><!-- <a href="<//?= wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0]; ?>" class="c-product__image--scale"> --> <?php endif; ?>
-                    <img src="<?= wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0]; ?>" alt="<?= $title; ?>" class="t-margin-bottom" />
+                    <img src="<?= wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0]; ?>" alt="<?= $title; ?>" class="t-margin-bottom" loading="lazy" />
                 <?php if(false) : ?><!-- </a> --><?php endif; ?>
                 <?php $image2 = get_field('image_2');
     				if( !empty($image2) ): ?>
-				        <img src="<?php echo $image2['url']; ?>" alt="<?php echo $image2['alt']; ?>" class="t-margin-bottom" />
+				        <img src="<?php echo $image2['url']; ?>" alt="<?php echo $image2['alt']; ?>" class="t-margin-bottom" loading="lazy" />
     			<?php endif; ?>
 
     			<?php $image3 = get_field('image_3');
     				if( !empty($image3) ): ?>
-    					<img src="<?php echo $image3['url']; ?>" alt="<?php echo $image3['alt']; ?>" class="t-margin-bottom" />
+    					<img src="<?php echo $image3['url']; ?>" alt="<?php echo $image3['alt']; ?>" class="t-margin-bottom" loading="lazy" />
     			<?php endif; ?>
 
     			<?php $image4 = get_field('image_4');
     				if( !empty($image4) ): ?>
-    					<img src="<?php echo $image4['url']; ?>" alt="<?php echo $image4['alt']; ?>" class="t-margin-bottom" />
+    					<img src="<?php echo $image4['url']; ?>" alt="<?php echo $image4['alt']; ?>" class="t-margin-bottom" loading="lazy" />
     			<?php endif; ?>
 
     			<?php $image5 = get_field('image_5');
     				if( !empty($image5) ): ?>
-    					<img src="<?php echo $image5['url']; ?>" alt="<?php echo $image5['alt']; ?>" class="t-margin-bottom" />
+    					<img src="<?php echo $image5['url']; ?>" alt="<?php echo $image5['alt']; ?>" class="t-margin-bottom" loading="lazy" />
     			<?php endif; ?>
             </div>
         </div>

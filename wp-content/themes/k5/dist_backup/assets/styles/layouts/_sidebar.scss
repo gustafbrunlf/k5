@@ -22,7 +22,7 @@
 		}
 
 		a {
-			display: inline-block;
+			display: block;
 			color: $black;
 		}
 
@@ -39,7 +39,7 @@
 		}
 
 		@media (max-width: $xs-screen) {
-			font: $font-sz2-3;
+			font: $font-sz2-2;
 		}
 	}
 

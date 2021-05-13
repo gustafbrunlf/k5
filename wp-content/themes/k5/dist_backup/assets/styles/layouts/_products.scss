@@ -34,7 +34,7 @@
             flex: 1 0 auto;
 
             &:first-child {
-                flex: 0 0 110px;
+                flex: 0 0 100px;
             }
 
             @media (max-width: $xs-screen) {
@@ -123,7 +123,6 @@
     &__sizes {
         display: flex;
         font: $font-sz4;
-        margin-left: -10px;
 
         label {
             cursor: pointer;
@@ -137,7 +136,7 @@
                 right: -3px;
                 top: 0px;
             }
-            &:last-of-type {
+            &:last-child {
                 &:after {
                     display: none;
                 }

@@ -23,6 +23,8 @@ if($grid = get_field('Grid')):
                     $title = $component['image_title'];
                     $title_hover = $component['hover_title'];
                     $secondary_title = $component['image_description'];
+                    $slideshow = $component['slideshow'];
+                    $slideshow_images = $component['slideshow_images'];
                 endif;
 
                 $anchor_link = isset($component['anchor_link']) ? 'id="' . $component['anchor_link'] . '" ' : '';
@@ -39,7 +41,7 @@ if($grid = get_field('Grid')):
             ?>
             <div <?= $anchor_link; ?>class="o-grid__column<?= $grid_item['margin_images'] == 'sm' ? ' o-grid__column--small' : ''; ?><?= $text_size; ?>" data-size="<?= $component['width']; ?>">
                 <?php if($title || $image || $component['text_block'] || $component['text_blocks']) : ?>
-                    <?php if($link): ?>
+                    <?php if($link && !$slideshow): ?>
                     <a href="<?= $link; ?>" class="c-project__image">
                     <?php endif; ?>
                         <?php if($title): ?>
@@ -50,9 +52,37 @@ if($grid = get_field('Grid')):
                         <?php endif; ?>
                         <?php if($image): ?>
                             <div class="c-project__image-wrapper">
-                                <img <?= $hover_image ? 'class="c-project__image-original" ' : ''; ?>src="<?= wp_get_attachment_image_src($image, 'full')[0]; ?>" alt="<?= $title; ?>">
-                                <?php if($hover_image): ?>
-                                    <img class="c-project__image-hover" src="<?= wp_get_attachment_image_src($hover_image, 'full')[0]; ?>" alt="<?= $title; ?>">
+                                <?php if(!$slideshow): ?>
+                                    <img <?= $hover_image ? 'class="c-project__image-original" ' : ''; ?>src="<?= wp_get_attachment_image_src($image, 'full')[0]; ?>" alt="<?= $title; ?>" loading="lazy">
+                                    <?php if($hover_image): ?>
+                                        <img class="c-project__image-hover" src="<?= wp_get_attachment_image_src($hover_image, 'full')[0]; ?>" alt="<?= $title; ?>" loading="lazy">
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <div class="c-project__slideshow">
+                                        <?php if($image): ?>
+                                            <div class="c-project__slideshow-item">
+                                                <?= $link ? '<a href="'. $link . '">' : ''; ?>
+                                                    <img src="<?= wp_get_attachment_image_src($image, 'full')[0]; ?>" alt="<?= $title; ?>" loading="lazy" />
+                                                <?= $link ? '</a>' : ''; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if($hover_image): ?>
+                                            <div class="c-project__slideshow-item">
+                                                <?= $link ? '<a href="'. $link . '">' : ''; ?>
+                                                    <img src="<?= wp_get_attachment_image_src($hover_image, 'full')[0]; ?>" alt="<?= $title; ?>" loading="lazy" />
+                                                <?= $link ? '</a>' : ''; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if($slideshow_images): ?>
+                                            <?php foreach ($slideshow_images as $slideshow_image): ?>
+                                            <div class="c-project__slideshow-item">
+                                                <?= $slideshow_image['slideshow_item_link'] ? '<a href="'. $slideshow_image['slideshow_item_link'] . '">' : ''; ?>
+                                                    <img src="<?= wp_get_attachment_image_src($slideshow_image['slideshow_item'], 'full')[0]; ?>" alt="<?= $title; ?>" loading="lazy" />
+                                                <?= $slideshow_image['slideshow_item_link'] ? '</a>' : ''; ?>
+                                            </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>

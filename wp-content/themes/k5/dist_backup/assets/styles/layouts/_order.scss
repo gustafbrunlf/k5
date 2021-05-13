@@ -1,0 +1,32 @@
+.c-order {
+    padding-top: 15px;
+    min-height: 100vh;
+    font: $font-sz2;
+    position: relative;
+
+    h2, p {
+        font: $font-sz2;
+        line-height: 32px;
+        margin: 0;
+
+        @media (max-width: $xs-screen) {
+            font: $font-sz2-2;
+            line-height: 28px;
+        }
+    }
+
+    &__title[class] {
+        position: absolute;
+        left: 15px;
+        bottom: 0;
+        font-size: 261px;
+        line-height: 1;
+        font-weight: normal;
+    }
+
+    @media (max-width: $xs-screen) {
+        .o-grid__column {
+            margin-bottom: 130px;
+        }
+    }
+}

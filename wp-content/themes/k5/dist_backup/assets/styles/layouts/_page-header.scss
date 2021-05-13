@@ -9,18 +9,6 @@
     	background-repeat: no-repeat;
     	background-size: cover;
     	background-position: center center;
-
-        &--mobile {
-            display: none;
-
-            @media (max-width: $xs-screen) {
-                display: block;
-
-                & + .c-page-header__content {
-                    display: none;
-                }
-            }
-        }
     }
     &__content--video {
         position: relative;
@@ -54,39 +42,6 @@
 			padding: 0 60px;
     	}
 	}
-    &__columns {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    &__column {
-        position: relative;
-        width: 50%;
-
-        @media (max-width: $xs-screen) {
-            width: 100%;
-        }
-    }
-    &__link {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        margin: 0;
-        padding: 15px;
-        font-size: 28px;
-
-        &--right {
-            right: 0;
-            @media (min-width: $xs-screen) {
-                padding-right: 45px;
-            }
-        }
-        &--left {
-            left: 0;
-            @media (min-width: $xs-screen) {
-                padding-left: 45px;
-            }
-        }
-    }
 
     @media (max-width: $xs-screen) {
         padding-bottom: 150px;

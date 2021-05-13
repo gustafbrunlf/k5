@@ -1,0 +1,63 @@
+.c-project {
+    &__image-title {
+        font: $font-sz4;
+        margin: 0 0 10px;
+
+        span {
+            margin-left: 35%;
+        }
+        &-hover[class] {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            margin-left: 5px;
+
+            @media (max-width: $xs-screen) {
+                opacity: 1;
+
+                + span {
+                    margin-left: 18%;
+                }
+            }
+        }
+        &.hover {
+            .c-project__image-title-hover {
+                opacity: 1;
+            }
+        }
+    }
+    &__text-block {
+        &--right {
+            margin-right: 30%;
+        }
+        &--left {
+            margin-left: 30%;
+        }
+    }
+    &__image-wrapper {
+        position: relative;
+
+        @media (min-width: 1025px) {
+            &:hover {
+                .c-project__image-original {
+                    opacity: 0;
+                }
+                .c-project__image-hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    &__image-original,
+    &__image-hover {
+        transition: all 0.4s ease;
+    }
+    &__image-original {
+        opacity: 1;
+    }
+    &__image-hover {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}

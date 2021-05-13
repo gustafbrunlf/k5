@@ -20,7 +20,7 @@
 			<?php if( $profile_image ) : ?>
 				<div class="about-block__image">
 					<div class="about-block__close"></div>
-					<img src="<?= wp_get_attachment_image_src( $profile_image, 'full' )[0]; ?>" alt="">
+					<img src="<?= wp_get_attachment_image_src( $profile_image, 'full' )[0]; ?>" alt="" loading="lazy">
 				</div>
 			<?php endif; ?>
 

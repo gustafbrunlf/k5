@@ -28,11 +28,11 @@
 							if( $value['slider'] && $value['use_slider'] ) {
 								echo '<div class="slider-wrapper">';
 								foreach ($value['slider'] as $slide) {
-									echo '<div class="slide-item"><img src="' . wp_get_attachment_image_src($slide['slider-image'], 'full')[0] . '"></div>';
+									echo '<div class="slide-item"><img src="' . wp_get_attachment_image_src($slide['slider-image'], 'full')[0] . '" loading="lazy"></div>';
 								}
 								echo '</div>';
 							} else {
-								echo '<img src="' . wp_get_attachment_image_src($value['image'], 'full')[0] . '">';
+								echo '<img src="' . wp_get_attachment_image_src($value['image'], 'full')[0] . '" loading="lazy">';
 							}
 							echo '<p>' . $value['bylinetext'] . '</p>';
 							echo '</div>';
@@ -49,11 +49,11 @@
 								if( $value['slider'] && $value['use_slider'] ) {
 									echo '<div class="slider-wrapper">';
 									foreach ($value['slider'] as $slide) {
-										echo '<div class="slide-item"><img src="' . wp_get_attachment_image_src($slide['slider-image'], 'full')[0] . '"></div>';
+										echo '<div class="slide-item"><img src="' . wp_get_attachment_image_src($slide['slider-image'], 'full')[0] . '" loading="lazy"></div>';
 									}
 									echo '</div>';
 								} else {
-									echo '<img src="' . wp_get_attachment_image_src($value['image'], 'full')[0] . '">';
+									echo '<img src="' . wp_get_attachment_image_src($value['image'], 'full')[0] . '" loading="lazy">';
 								}
 								echo '<p>' . $value['bylinetext'] . '</p>';
 							echo '</div>';
