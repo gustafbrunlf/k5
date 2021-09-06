@@ -1,4 +1,11 @@
 <?php
+$cookie_name = 'currency';
+if(!isset($_COOKIE[$cookie_name])) {
+    $currency = 'EUR';
+} else {
+    $currency = $_COOKIE[$cookie_name];
+}
+
 if($grid = get_field('Grid')):
     foreach ($grid as $grid_item) :
 ?>
@@ -15,7 +22,11 @@ if($grid = get_field('Grid')):
                     $hover_image = get_field('hover_image', $prodID);
                     $title = get_field('number', $prodID);
                     $title_hover = get_field('hover_title', $prodID);
-                    $secondary_title = get_field('price', $prodID) . ' SEK';
+                    if($currency === 'EUR') :
+                        $secondary_title = get_field('price_europe', $prodID) . ' EUR';
+                    else :
+                        $secondary_title = get_field('price', $prodID) . ' SEK';
+                    endif;
                 else :
                     $link = $component['image_link'];
                     $image = $component['image'];
@@ -41,7 +52,7 @@ if($grid = get_field('Grid')):
             ?>
             <div <?= $anchor_link; ?>class="o-grid__column<?= $grid_item['margin_images'] == 'sm' ? ' o-grid__column--small' : ''; ?><?= $text_size; ?>" data-size="<?= $component['width']; ?>">
                 <?php if($title || $image || $component['text_block'] || $component['text_blocks']) : ?>
-                    <?php if($link && !$slideshow): ?>
+                    <?php if($link && !isset($slideshow)): ?>
                     <a href="<?= $link; ?>" class="c-project__image">
                     <?php endif; ?>
                         <?php if($title): ?>
@@ -52,7 +63,7 @@ if($grid = get_field('Grid')):
                         <?php endif; ?>
                         <?php if($image): ?>
                             <div class="c-project__image-wrapper">
-                                <?php if(!$slideshow): ?>
+                                <?php if(!isset($slideshow)): ?>
                                     <img <?= $hover_image ? 'class="c-project__image-original" ' : ''; ?>src="<?= wp_get_attachment_image_src($image, 'full')[0]; ?>" alt="<?= $title; ?>" loading="lazy">
                                     <?php if($hover_image): ?>
                                         <img class="c-project__image-hover" src="<?= wp_get_attachment_image_src($hover_image, 'full')[0]; ?>" alt="<?= $title; ?>" loading="lazy">

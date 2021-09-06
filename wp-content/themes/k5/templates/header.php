@@ -34,7 +34,23 @@
             ?>
             <?= $cart_value > 0 ? '<a href="' . get_permalink($checkout[0]->ID)  . '">' : '' ?>Cart / <span class="c-header__cart-qty"><?= $cart_value; ?></span><?= $cart_value > 0 ? '<span class="c-header__cart-checkout"> / Checkout</span></a>' : '';?>
         </div>
+
         <?php if(!is_page_template('template-checkout.php')): ?>
+            <div class="c-header__currency">
+                <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="post">
+                    <?php
+                    $cookie_name = 'currency';
+                    if(!isset($_COOKIE[$cookie_name])) {
+                        $currency = 'EUR';
+                    } else {
+                        $currency = $_COOKIE[$cookie_name];
+                    } ?>
+                    <select>
+                        <option value="EUR"<?= $currency == 'EUR' ? 'selected' : ''; ?>>EUR</option>
+                        <option value="SEK"<?= $currency == 'SEK' ? 'selected' : ''; ?>>SEK</option>
+                    </select>
+                </form>
+            </div>
             <div class="c-header__link">
                 <?php
                 $all_products = get_pages(array(

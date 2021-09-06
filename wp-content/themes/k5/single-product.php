@@ -1,5 +1,18 @@
 <?php while (have_posts()) : the_post(); ?>
 <?php
+$cookie_name = 'currency';
+if(!isset($_COOKIE[$cookie_name])) {
+    $currency = 'EUR';
+} else {
+    $currency = $_COOKIE[$cookie_name];
+}
+
+if($currency === 'EUR') :
+    $price = get_field('price_europe') . ' EUR';
+else :
+    $price = get_field('price') . ' SEK';
+endif;
+
 $style = "";
 if( $background_color = get_field('background_color') ) :
     $style .= 'background-color:' . $background_color . ';';
@@ -18,7 +31,7 @@ endif;
     <div class="o-width-limiter o-width-limiter--small">
         <div class="o-grid o-grid--small">
             <div class="o-grid__column o-grid__column--small" data-size="6">
-                <h2 class="c-product__title"><?= the_title(); ?><?= get_field('price') ? ' <span>/</span> ' . get_field('price') . ' SEK' : ''; ?></h2>
+                <h2 class="c-product__title"><?= the_title(); ?><?= $price ? ' <span>/</span> ' . $price : ''; ?></h2>
                 <?php if(!get_field('non_purchasable')) : ?>
                     <button type="button" name="add-to-bag" data-id="<?= get_the_ID(); ?>" class="button c-product__button c-product__button--add c-product__button--xs">Add to bag</button>
                 <?php else : ?>

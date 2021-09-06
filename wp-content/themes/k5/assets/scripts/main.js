@@ -211,6 +211,15 @@
             updateCartTotals();
         });
 
+        var cookieCurrency = getCookie('currency');
+        if(cookieCurrency) {
+            if(cookieCurrency === 'SEK') {
+                $('.c-checkout__item-shipping select').val('Sweden').change();
+            } else {
+                $('.c-checkout__item-shipping select').val('Europe').change();
+            }
+        }
+
         $(document).on("submit", '.c-checkout__form', function(event){
             event.preventDefault();
 
@@ -349,6 +358,11 @@
                 var aid = $(this).attr("href");
                 $('html,body').animate({scrollTop: $(aid).offset().top - 40},'slow');
             }
+        });
+
+        $(document).on("change", '.c-header__currency select', function(event){
+            setCookie('currency', $(this).val(), 0.5);
+            $(this).closest('form').submit();
         });
       },
       finalize: function() {

@@ -1,6 +1,12 @@
 <?php if(have_posts()) :
 $page_id = get_queried_object_id();
 $term = get_term($page_id, 'category' );
+$cookie_name = 'currency';
+if(!isset($_COOKIE[$cookie_name])) {
+    $currency = 'EUR';
+} else {
+    $currency = $_COOKIE[$cookie_name];
+}
 $style = "";
 if( $background_color = get_field('background_color', 'category_' . $term->term_id) ) :
     $style .= 'background-color:' . $background_color . ';';
@@ -63,7 +69,11 @@ endif;
                             $hover_image = get_field('hover_image', $prodID);
                             $title = get_field('number', $prodID);
                             $title_hover = get_field('hover_title', $prodID);
-                            $secondary_title = get_field('price', $prodID) . ' SEK';
+                            if($currency === 'EUR') :
+                                $secondary_title = get_field('price_europe', $prodID) . ' EUR';
+                            else :
+                                $secondary_title = get_field('price', $prodID) . ' SEK';
+                            endif;
                         else :
                             $link = $component['image_link'];
                             $image = $component['image'];

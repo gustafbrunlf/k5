@@ -17,17 +17,22 @@
 
 		@media (max-width: $xs-screen) {
 			justify-content: space-between;
+			flex-wrap: wrap;
 		}
 	}
 
 	&__sound {
-		flex: 0 0 250px;
+		flex: 0 0 300px;
 		button {
 			box-shadow: none;
 			background-color: transparent;
 			color: inherit;
 			border: 0;
 			padding: 0;
+		}
+
+		@media (max-width: $sm-screen) {
+			flex: 0 0 200px;
 		}
 
 		@media (max-width: $xs-screen) {
@@ -47,6 +52,24 @@
 		&__cart {
 			flex: 1 1 calc(50% - 130px);
 			padding-left: 10px;
+		}
+	}
+
+	&__currency {
+		flex: 0 0 60px;
+
+		select {
+			margin-top: 5px;
+			border: 0;
+			background-color: transparent;
+		}
+
+		@media (max-width: $xs-screen) {
+			display: flex;
+			justify-content: flex-end;
+			flex: 1 0 100%;
+			order: 4;
+			margin-top: 5px;
 		}
 	}
 
