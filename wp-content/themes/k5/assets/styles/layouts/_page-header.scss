@@ -77,11 +77,11 @@
 
         span {
             position: absolute;
-            top: 60%;
             transform: rotate(-90deg);
             transform-origin: right;
             padding: 0;
             right: 23px;
+            bottom: 40%;
         }
 
         @media (max-width: $xs-screen) {

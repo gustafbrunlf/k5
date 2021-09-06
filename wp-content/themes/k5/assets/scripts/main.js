@@ -364,6 +364,19 @@
             setCookie('currency', $(this).val(), 0.5);
             $(this).closest('form').submit();
         });
+
+        $('.c-page-header__link span').each(function() {
+            var itemWidth = $(this).width();
+            var bottomDistance = $(window).width() > 992 ? 100 : 50;
+            $(this).css('bottom', itemWidth + bottomDistance);
+        });
+
+        $('.c-checkout__item-size select').each(function() {
+            var itemWidth = $(this).width();
+            console.log(itemWidth);
+            $(this).css('background-position', itemWidth + 5);
+            $(this).css('min-width', itemWidth + 20);
+        });
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
