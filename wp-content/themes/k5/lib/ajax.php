@@ -12,6 +12,8 @@
         $order_shipping = $_POST['shipping'];
         $shipping_total = $_POST['shipping_total'];
         $currency = $_POST['currency'];
+        $custom_size = $_POST['custom_size'];
+        $flower_shop = $_POST['flower_shop'];
 
         $count_products = count($product_data);
         unset($product_data[$count_products-1]);
@@ -61,6 +63,8 @@
         $body_admin .= $product_body;
         $body_admin .= '<p style="margin:0;"><b>Shipping:</b> ' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</ br>';
         $body_admin .= '<p style="margin:0;"><b>The total of the order</b> ' . $order_total . ' ' . $currency . '</p>';
+        $body_admin .= '<p style="margin:0;"><b>Custom size:</b> ' . (empty($custom_size) ? 'Not used' : $custom_size . ' mm')  . '</p>';
+        $body_admin .= '<p style="margin:0;"><b>Tried at flowershop:</b> ' . ($flower_shop === 'true' ? 'Yes' : 'No')  . '</p>';
         $body_admin .= '</body></html>';
 
         wp_mail( $admin_email, $admin_subject, $body_admin, $headers );
@@ -70,6 +74,9 @@
         $body_customer .= '<h1>Thank you for your order</h1>';
         $body_customer .= $product_body;
         $body_customer .= '<table><tbody>';
+        if(!empty($custom_size)):
+            $body_customer .= '<tr><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>Custom size:</b></td><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>' . $custom_size . ' mm</b></p></td></tr>';
+        endif;
         $body_customer .= '<tr><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>Shipping</b></td><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>' . $order_shipping . ' ' . $shipping_total . ' ' . $currency . '</b></p></td></tr>';
         $body_customer .= '<tr><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>The total of your order</b></p></td><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b>' . $order_total . ' ' . $currency . '</b></p></td></tr>';
         $body_customer .= '<tr><td style="width:200px;padding-right:20px;padding-bottom:10px;"><p style="margin:0;"><b><p style="margin:0;"><a style="color:#000;" href="mailto:contact@kultur5.com">contact@kultur5.com</a></p></b></p></td></tr>';

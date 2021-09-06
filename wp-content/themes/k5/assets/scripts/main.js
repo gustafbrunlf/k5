@@ -221,6 +221,8 @@
                 $('#checkout-zip').attr('disabled', 'disabled');
                 $('#checkout-country').attr('disabled', 'disabled');
                 $('.c-checkout__item-shipping select').attr('disabled', 'disabled');
+                $('#checkout-custom-size').attr('disabled', 'disabled');
+                $('#checkout-flower-shop').attr('disabled', 'disabled');
 
                 $('.c-checkout__button').attr('disabled', 'disabled');
 
@@ -233,6 +235,8 @@
                 var shipping = $('.c-checkout__item-shipping select').val();
                 var shipping_total = $('#checkout-total-shipping').val();
                 var currency = $('#checkout-currency').val();
+                var custom_size = $('#checkout-custom-size').val();
+                var flower_shop = $('#checkout-flower-shop').prop('checked');
 
                 var error = '<h3 class="c-checkout__error">Something went wrong, try again or contact <a href="mailto:order@kultur5.com">order@kultur5.com</a>.</h3>';
 
@@ -251,6 +255,8 @@
                         shipping: shipping,
                         shipping_total: shipping_total,
                         currency: currency,
+                        custom_size: custom_size,
+                        flower_shop: flower_shop,
                         data: $(this).serializeArray()
                     },
                     success: function(data) {

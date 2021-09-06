@@ -77,21 +77,22 @@
 
         span {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 15px;
+            top: 60%;
+            transform: rotate(-90deg);
+            transform-origin: right;
+            padding: 0;
+            right: 23px;
         }
 
-        &--right span {
-            right: 0;
-            @media (min-width: $xs-screen) {
-                padding-right: 45px;
-            }
-        }
-        &--left span {
-            left: 0;
-            @media (min-width: $xs-screen) {
-                padding-left: 45px;
+        @media (max-width: $xs-screen) {
+            font-size: 20px;
+
+            span {
+                top: initial;
+                bottom: 22%;
+                transform-origin: right;
+                transform: rotate(-90deg);
+                right: 15px;
             }
         }
     }

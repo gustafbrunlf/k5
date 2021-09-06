@@ -117,6 +117,17 @@ $total_price = 0;
                                 <input type="hidden" id="checkout-total-hidden" value="<?= $total_price; ?>">
                             </label>
                         </div>
+                        <div class="c-checkout__customer c-checkout__customer--customsize">
+                            <label for="checkout-custom-size"><span>Custom size (mm inner circumference):</span>
+                                <input type="number" name="customsize" id="checkout-custom-size">
+                            </label>
+                        </div>
+                        <div class="c-checkout__customer c-checkout__customer--flowershop">
+                            <label for="checkout-flower-shop">
+                                <input type="checkbox" name="flowershop" id="checkout-flower-shop">
+                                Tried out at flower shop<span class="checkmark"></span>
+                            </label>
+                        </div>
                     </div>
                     <div class="o-grid__column o-grid__column--small t-static" data-size="6">
                         <button class="button c-checkout__button" name="button" disabled>Send request</button>

@@ -94,14 +94,72 @@
                 }
             }
         }
+        &--customsize[class] {
+            label {
+                flex: 0 0 70%;
+            }
+            span {
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+            input {
+                margin-top: 5px;
+                font-size: 18px;
+                line-height: 24px;
+            }
+        }
+        &--flowershop[class] {
+            margin: 10px 0;
+            input {
+                display: none;
+            }
+            label {
+                display: flex;
+                flex: 1;
+                padding-right: 30px;
+                align-items: center;
+
+                .checkmark {
+                    display: inline-block;
+                    position: relative;
+                    border: 1px solid #000;
+                    height: 30px;
+                    width: 30px;
+                    cursor: pointer;
+                    margin: 0 0 0 15px;
+
+                    &::before,
+                    &::after {
+                        content:"";
+                        position: absolute;
+                        top: 13px;
+                        right: 1px;
+                        background-color: #000;
+                        height: 2px;
+                        width: 25px;
+                        opacity: 0;
+                    }
+                    &::before {
+                        transform: rotate(45deg);
+                    }
+                    &::after {
+                        transform: rotate(-45deg);
+                    }
+                }
+                input:checked~.checkmark::before,
+                input:checked~.checkmark::after {
+                    opacity: 1;
+                }
+            }
+        }
     }
     &__button {
         font: $font-sz2;
 
         @media (min-width: 993px) {
             position: absolute;
-            bottom: 0;
-            margin-bottom: 27px;
+            bottom: 150px;
+            margin: 0;
         }
 
         @media (max-width: 992px) {
@@ -154,7 +212,7 @@
         }
         &-title {
             display: flex;
-            flex: 1 0 45%;
+            flex: 0 0 45%;
 
             h2 {
                 font: $font-sz2;
@@ -180,7 +238,7 @@
         }
         &-qty {
             position: relative;
-            flex: 1 0 15%;
+            flex: 0 0 70px;
         }
         &-size select {
             min-width: 50px;
@@ -204,6 +262,11 @@
             @media (max-width: $xs-screen) {
                 text-align: right;
             }
+        }
+        &-price[class] {
+            flex: 0 0 100%;
+            padding-top: 10px;
+            padding-left: 25px;
         }
         &-shipping {
             flex: 1 0 70%;

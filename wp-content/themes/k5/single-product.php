@@ -44,8 +44,8 @@ endif;
                     <?php if($sizes = get_field('sizes')): ?>
                         <li class="c-product__sizes">
                         <?php foreach ($sizes as $key => $size) : ?>
-                            <label for="size-<?= $key; ?>"><?= $size['size']; ?></label>
                             <input type="radio" id="size-<?= $key; ?>" class="c-product__size" name="size" value="<?= $size['size'] ?>" <?= $key == 0 ? ' checked' : ''; ?>>
+                            <label for="size-<?= $key; ?>"><?= $size['size']; ?></label>
                         <?php endforeach; ?>
                         </li>
                     <?php endif; ?>
