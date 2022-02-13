@@ -1,3 +1,10 @@
+<?php
+$cookie_name = 'currency';
+if(!isset($_COOKIE[$cookie_name])) {
+    $currency = 'EUR';
+} else {
+    $currency = $_COOKIE[$cookie_name];
+} ?>
 <header class="c-header" role="banner">
     <div class="c-header__inner">
         <?php if ( get_field('sound', 'option') && !is_page_template('template-checkout.php') && !is_page_template('template-order.php') ) : ?>
@@ -36,22 +43,15 @@
         </div>
 
         <?php if(!is_page_template('template-checkout.php')): ?>
-            <div class="c-header__currency">
+            <div class="c-header__currency<?= is_page_template('template-products.php') ? ' c-header__currency--show-xs' : '';?>">
                 <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="post">
-                    <?php
-                    $cookie_name = 'currency';
-                    if(!isset($_COOKIE[$cookie_name])) {
-                        $currency = 'EUR';
-                    } else {
-                        $currency = $_COOKIE[$cookie_name];
-                    } ?>
-                    <select>
-                        <option value="EUR"<?= $currency == 'EUR' ? 'selected' : ''; ?>>EUR</option>
-                        <option value="SEK"<?= $currency == 'SEK' ? 'selected' : ''; ?>>SEK</option>
-                    </select>
+                    <input type="radio" name="currency[]" value="EUR" id="eur" class="c-header__auto-submit"<?= $currency == 'EUR' ? ' checked' : ''; ?>>
+                    <label for="eur">EUR</label>
+                    <input type="radio" name="currency[]" value="SEK" id="sek" class="c-header__auto-submit"<?= $currency == 'SEK' ? ' checked' : ''; ?>>
+                    <label for="sek">SEK</label>
                 </form>
             </div>
-            <div class="c-header__link">
+            <div class="c-header__link<?= is_page_template('template-products.php') ? ' c-header__link--hide-xs' : '';?>">
                 <?php
                 $all_products = get_pages(array(
             	    'meta_key' => '_wp_page_template',

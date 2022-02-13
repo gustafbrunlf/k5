@@ -16,6 +16,9 @@ if($grid = get_field('Grid')):
         <?php if($grid_item['row']) :
             foreach($grid_item['row'] as $component) : ?>
                 <?php
+                $slideshow = "";
+                $slideshow_images = "";
+
                 if($prodID = $component['product']) :
                     $link = get_permalink($prodID);
                     $image = get_post_thumbnail_id($prodID);
@@ -52,7 +55,7 @@ if($grid = get_field('Grid')):
             ?>
             <div <?= $anchor_link; ?>class="o-grid__column<?= $grid_item['margin_images'] == 'sm' ? ' o-grid__column--small' : ''; ?><?= $text_size; ?>" data-size="<?= $component['width']; ?>">
                 <?php if($title || $image || $component['text_block'] || $component['text_blocks']) : ?>
-                    <?php if($link && !isset($slideshow)): ?>
+                    <?php if($link && !$slideshow): ?>
                     <a href="<?= $link; ?>" class="c-project__image">
                     <?php endif; ?>
                         <?php if($title): ?>
@@ -63,7 +66,7 @@ if($grid = get_field('Grid')):
                         <?php endif; ?>
                         <?php if($image): ?>
                             <div class="c-project__image-wrapper">
-                                <?php if(!isset($slideshow)): ?>
+                                <?php if(!$slideshow): ?>
                                     <img <?= $hover_image ? 'class="c-project__image-original" ' : ''; ?>src="<?= wp_get_attachment_image_src($image, 'full')[0]; ?>" alt="<?= $title; ?>" loading="lazy">
                                     <?php if($hover_image): ?>
                                         <img class="c-project__image-hover" src="<?= wp_get_attachment_image_src($hover_image, 'full')[0]; ?>" alt="<?= $title; ?>" loading="lazy">

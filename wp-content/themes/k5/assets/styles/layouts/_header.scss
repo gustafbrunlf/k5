@@ -22,7 +22,7 @@
 	}
 
 	&__sound {
-		flex: 0 0 300px;
+		flex: 0 0 250px;
 		button {
 			box-shadow: none;
 			background-color: transparent;
@@ -50,26 +50,52 @@
 			flex: 1 1 calc(50% - 250px);
 		}
 		&__cart {
-			flex: 1 1 calc(50% - 130px);
+			flex: 0 0 240px;
 			padding-left: 10px;
 		}
 	}
 
 	&__currency {
-		flex: 0 0 60px;
+		flex: 1 1 calc(50% - 370px);
 
-		select {
-			margin-top: 5px;
-			border: 0;
-			background-color: transparent;
+		form {
+			display: flex;
 		}
 
+		input {
+			display: none;
+
+			&:checked + label {
+				color:$black;
+			}
+		}
+
+		label {
+			cursor: pointer;
+			color:$gray;
+
+			&:first-of-type {
+				position: relative;
+				margin-right: 7px;
+				padding-right:7px;
+
+				&::after {
+					content: '/';
+					position: absolute;
+					right:-2px;
+					top: 1px;
+				}
+			}
+		}
 		@media (max-width: $xs-screen) {
-			display: flex;
-			justify-content: flex-end;
-			flex: 1 0 100%;
-			order: 4;
-			margin-top: 5px;
+			display: none;
+
+			&--show-xs {
+				display: block;
+				font: $font-sz4;
+				flex: 0 0 90px;
+				order: 3;
+			}
 		}
 	}
 
@@ -82,6 +108,10 @@
 			font: $font-sz4;
 			flex: 0 0 90px;
 			order: 3;
+
+			&--hide-xs {
+				display: none;
+			}
 		}
 	}
 

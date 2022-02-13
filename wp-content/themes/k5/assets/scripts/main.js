@@ -360,7 +360,7 @@
             }
         });
 
-        $(document).on("change", '.c-header__currency select', function(event){
+        $(document).on("change", '.c-header__auto-submit', function(event){
             setCookie('currency', $(this).val(), 0.5);
             $(this).closest('form').submit();
         });
@@ -373,7 +373,6 @@
 
         $('.c-checkout__item-size select').each(function() {
             var itemWidth = $(this).width();
-            console.log(itemWidth);
             $(this).css('background-position', itemWidth + 5);
             $(this).css('min-width', itemWidth + 20);
         });
