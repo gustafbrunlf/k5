@@ -239,6 +239,10 @@
         &-qty {
             position: relative;
             flex: 0 0 70px;
+
+            select {
+                text-align: left;
+            }
         }
         &-size select {
             min-width: 50px;

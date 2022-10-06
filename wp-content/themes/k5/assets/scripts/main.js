@@ -218,6 +218,8 @@
             } else {
                 $('.c-checkout__item-shipping select').val('Europe').change();
             }
+        } else {
+            $('.c-checkout__item-shipping select').val('Europe').change();
         }
 
         $(document).on("submit", '.c-checkout__form', function(event){

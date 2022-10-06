@@ -1,10 +1,12 @@
 @font-face {
   font-family: "Union";
   src: url("../../assets/fonts/union-regular.woff") format("woff");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Union";
   src: url("../../assets/fonts/union-bold.woff") format("woff");
   font-weight: bold;
+  font-display: swap;
 }
