@@ -117,6 +117,11 @@ $total_price = 0;
                                 <input type="hidden" id="checkout-total-hidden" value="<?= $total_price; ?>">
                             </label>
                         </div>
+                        <div class="c-checkout__customer c-checkout__customer--phone">
+                            <label for="checkout-phone"><span>Type your phone number</span>
+                                <input type="text" name="phonenumber" placeholder="Phone number" id="checkout-phone">
+                            </label>
+                        </div>
                         <div class="c-checkout__customer c-checkout__customer--customsize">
                             <label for="checkout-custom-size"><span>Custom size (mm inner circumference):</span>
                                 <input type="number" name="customsize" id="checkout-custom-size">

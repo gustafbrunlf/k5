@@ -229,6 +229,7 @@
                 $('#checkout-email').attr('disabled', 'disabled');
                 $('#checkout-name').attr('disabled', 'disabled');
                 $('#checkout-address').attr('disabled', 'disabled');
+                $('#checkout-phone').attr('disabled', 'disabled');
                 $('#checkout-zip').attr('disabled', 'disabled');
                 $('#checkout-country').attr('disabled', 'disabled');
                 $('.c-checkout__item-shipping select').attr('disabled', 'disabled');
@@ -241,6 +242,7 @@
                 var email = $('#checkout-email').val();
                 var name = $('#checkout-name').val();
                 var address = $('#checkout-address').val();
+                var phone = $('#checkout-phone').val();
                 var zip = $('#checkout-zip').val();
                 var country = $('#checkout-country').val();
                 var shipping = $('.c-checkout__item-shipping select').val();
@@ -260,6 +262,7 @@
                         email: email,
                         name: name,
                         address: address,
+                        phone: phone,
                         zip: zip,
                         country: country,
                         total: total,
@@ -371,12 +374,6 @@
             var itemWidth = $(this).width();
             var bottomDistance = $(window).width() > 992 ? 100 : 50;
             $(this).css('bottom', itemWidth + bottomDistance);
-        });
-
-        $('.c-checkout__item-size select').each(function() {
-            var itemWidth = $(this).width();
-            $(this).css('background-position', itemWidth + 5);
-            $(this).css('min-width', itemWidth + 20);
         });
       },
       finalize: function() {

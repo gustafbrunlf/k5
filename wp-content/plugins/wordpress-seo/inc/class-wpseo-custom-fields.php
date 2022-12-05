@@ -6,19 +6,21 @@
  */
 
 /**
- * WPSEO_Custom_Fields
+ * WPSEO_Custom_Fields.
  */
 class WPSEO_Custom_Fields {
 
 	/**
-	 * @var array Cache the custom fields.
+	 * Custom fields cache.
+	 *
+	 * @var array
 	 */
 	protected static $custom_fields = null;
 
 	/**
 	 * Retrieves the custom field names as an array.
 	 *
-	 * @see WordPress core: wp-admin/includes/template.php. Reused query from it.
+	 * @link WordPress core: wp-admin/includes/template.php. Reused query from it.
 	 *
 	 * @return array The custom fields.
 	 */
@@ -30,7 +32,7 @@ class WPSEO_Custom_Fields {
 			return self::$custom_fields;
 		}
 
-		self::$custom_fields = array();
+		self::$custom_fields = [];
 
 		/**
 		 * Filters the number of custom fields to retrieve for the drop-down
@@ -41,14 +43,20 @@ class WPSEO_Custom_Fields {
 		$limit  = apply_filters( 'postmeta_form_limit', 30 );
 		$sql    = "SELECT DISTINCT meta_key
 			FROM $wpdb->postmeta
-			WHERE meta_key NOT BETWEEN '_' AND '_z'
-			HAVING meta_key NOT LIKE %s
-			ORDER BY meta_key
+			WHERE meta_key NOT BETWEEN '_' AND '_z' AND SUBSTRING(meta_key, 1, 1) != '_'
 			LIMIT %d";
-		$fields = $wpdb->get_col( $wpdb->prepare( $sql, $wpdb->esc_like( '_' ) . '%', $limit ) );
+		$fields = $wpdb->get_col( $wpdb->prepare( $sql, $limit ) );
+
+		/**
+		 * Filters the custom fields that are auto-completed and replaced as replacement variables
+		 * in the meta box and sidebar.
+		 *
+		 * @param string[] $fields The custom field names.
+		 */
+		$fields = apply_filters( 'wpseo_replacement_variables_custom_fields', $fields );
 
 		if ( is_array( $fields ) ) {
-			self::$custom_fields = array_map( array( 'WPSEO_Custom_Fields', 'add_custom_field_prefix' ), $fields );
+			self::$custom_fields = array_map( [ 'WPSEO_Custom_Fields', 'add_custom_field_prefix' ], $fields );
 		}
 
 		return self::$custom_fields;

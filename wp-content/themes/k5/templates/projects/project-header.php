@@ -39,7 +39,10 @@ if($style || $video):
 	<?php else : ?>
 		<div class="c-page-header__columns">
 			<div class="c-page-header__column">
-				<img src="<?= wp_get_attachment_image_src( get_field('fullwidth_media'), 'full-size' )[0]; ?>" alt="First of two column image">
+				<img src="<?= wp_get_attachment_image_src( get_field('fullwidth_media'), 'full-size' )[0]; ?>" alt="First of two column image" <?= get_field('fullwidth_mobile_image') ? 'class="c-page-header__column-image"' : ''?>>
+				<?php if($fullwidth_mobile_image = get_field('fullwidth_mobile_image')): ?>
+					<img src="<?= wp_get_attachment_image_src( $fullwidth_mobile_image, 'full-size' )[0]; ?>" alt="First of two column image" class="c-page-header__column-image--mobile">
+				<?php endif; ?>
 				<?php if($link = get_field('first_column_link')): ?>
 					<a href="<?= $link; ?>" class="c-page-header__link c-page-header__link--right" style="color:<?= get_field('first_column_link_color'); ?>">
 						<span><?= get_field('first_column_link_text'); ?></span>
@@ -47,7 +50,10 @@ if($style || $video):
 				<?php endif; ?>
 			</div>
 			<div class="c-page-header__column">
-				<img src="<?= wp_get_attachment_image_src( get_field('fullwidth_second_media'), 'full-size' )[0]; ?>" alt="Second of two column image">
+				<img src="<?= wp_get_attachment_image_src( get_field('fullwidth_second_media'), 'full-size' )[0]; ?>" alt="Second of two column image" <?= get_field('fullwidth_second_media_mobile') ? 'class="c-page-header__column-image"' : ''?>>
+				<?php if($fullwidth_second_media_mobile = get_field('fullwidth_second_media_mobile')): ?>
+					<img src="<?= wp_get_attachment_image_src( $fullwidth_second_media_mobile, 'full-size' )[0]; ?>" alt="Second of two column image" class="c-page-header__column-image--mobile">
+				<?php endif; ?>
 				<?php if($second_link = get_field('second_column_link')): ?>
 					<a href="<?= $second_link; ?>" class="c-page-header__link c-page-header__link--left" style="color:<?= get_field('second_link_color'); ?>">
 						<span><?= get_field('second_column_link_text'); ?></span>

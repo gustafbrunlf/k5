@@ -41,17 +41,13 @@
     }
 
     &-dots {
-        position: absolute;
-        bottom: -26px;
+        position: static;
         display: flex !important;
+        flex-wrap: wrap;
         margin: 0;
         list-style-type: none;
         padding: 0;
         margin-left: -3px;
-
-        @media (max-width: $xs-screen) {
-            bottom: -15px;
-        }
 
         li {
             button {

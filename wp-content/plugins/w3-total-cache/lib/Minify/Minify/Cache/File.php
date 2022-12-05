@@ -1,4 +1,5 @@
 <?php
+namespace W3TCL\Minify;
 
 /**
  * Class Minify_Cache_File
@@ -52,8 +53,12 @@ class Minify_Cache_File {
 				return false;
 		}
 
-		@unlink($path . '_old');
-		@unlink($path . '_meta_old');
+		if ( file_exists( $path . '_old' ) ) {
+			@unlink($path . '_old');
+		}
+		if ( file_exists( $path . '_meta_old' ) ) {
+			@unlink($path . '_meta_old');
+		}
 
 		$content = $data['content'];
 		unset($data['content']);

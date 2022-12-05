@@ -108,6 +108,11 @@
                 line-height: 24px;
             }
         }
+        &--phone[class] {
+            label {
+                flex: 0 0 70%;
+            }
+        }
         &--flowershop[class] {
             margin: 10px 0;
             input {
@@ -158,7 +163,7 @@
 
         @media (min-width: 993px) {
             position: absolute;
-            bottom: 150px;
+            bottom: 236px;
             margin: 0;
         }
 
@@ -197,11 +202,12 @@
             background-color: #fff;
             border: 0;
             min-width: 35px;
+            padding-left: 23px;
             text-align: center;
             font: $font-sz2;
             background-image: url('../../assets/images/chevron.svg');
             background-repeat: no-repeat;
-            background-position: 20px 50%;
+            background-position: 0px 50%;
             -moz-appearance: none;
             -webkit-appearance: none;
             appearance: none;
@@ -246,11 +252,9 @@
         }
         &-size select {
             min-width: 50px;
-            background-position: 37px 50%;
 
             @media (max-width: 992px) {
                 min-width: 30px;
-                background-position: 19px 50%;
             }
         }
         &-price[class],
@@ -274,11 +278,6 @@
         }
         &-shipping {
             flex: 1 0 70%;
-
-            select {
-                padding-left: 23px;
-                background-position: 0px 50%;
-            }
         }
         &-remove {
             position: relative;

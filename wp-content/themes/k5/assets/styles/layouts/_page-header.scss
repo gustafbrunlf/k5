@@ -65,6 +65,20 @@
         @media (max-width: $xs-screen) {
             width: 100%;
         }
+
+        &-image {
+            &--mobile {
+                display: none;
+            }
+
+            @media (max-width: $xs-screen) {
+                display: none;
+
+                &--mobile {
+                    display: block;
+                }
+            }
+        }
     }
     &__link {
         position: absolute;

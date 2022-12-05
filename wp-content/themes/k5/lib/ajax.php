@@ -5,6 +5,7 @@
         $customer_email = $_POST['email'];
         $customer_name = $_POST['name'];
         $customer_address = $_POST['address'];
+        $customer_phone = $_POST['phone'];
         $customer_zip = $_POST['zip'];
         $customer_country = $_POST['country'];
         $order_total = $_POST['total'];
@@ -58,6 +59,7 @@
         $body_admin .= '<p style="margin:0;"><b>Customer e-mail:</b> ' . $customer_email . '</p><br />';
         $body_admin .= '<p style="margin:0;"><b>Customer name:</b> ' . $customer_name . '</p><br />';
         $body_admin .= '<p style="margin:0;"><b>Customer address:</b> ' . $customer_address . '</p><br />';
+        $body_admin .= '<p style="margin:0;"><b>Customer phone number:</b> ' . $customer_phone . '</p><br />';
         $body_admin .= '<p style="margin:0;"><b>Customer zip:</b> ' . $customer_zip . '</p><br />';
         $body_admin .= '<p style="margin:0;"><b>Customer country:</b> ' . $customer_country . '</p><br />';
         $body_admin .= $product_body;

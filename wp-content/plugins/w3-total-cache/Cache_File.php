@@ -156,8 +156,9 @@ class Cache_File extends Cache_Base {
 			return array( null, $has_old_data );
 
 		$fp = @fopen( $path, 'rb' );
-		if ( !$fp )
+		if ( ! $fp || 4 > filesize( $path ) ) {
 			return array( null, $has_old_data );
+		}
 
 		if ( $this->_locking )
 			@flock( $fp, LOCK_SH );
@@ -445,7 +446,7 @@ class Cache_File extends Cache_Base {
 		$dir = dirname( $path );
 
 		if ( !@is_dir( $dir ) ) {
-			if ( !Util_File::mkdir_from( $dir, W3TC_CACHE_DIR ) )
+			if ( !Util_File::mkdir_from( $dir, dirname( W3TC_CACHE_DIR ) ) )
 				return false;
 		}
 

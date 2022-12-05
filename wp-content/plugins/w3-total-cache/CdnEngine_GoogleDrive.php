@@ -54,7 +54,7 @@ class CdnEngine_GoogleDrive extends CdnEngine_Base {
 
 
 	private function _refresh_token() {
-		$result = wp_remote_post( GOOGLE_DRIVE_AUTHORIZE_URL, array(
+		$result = wp_remote_post( W3TC_GOOGLE_DRIVE_AUTHORIZE_URL, array(
 				'body' => array(
 					'client_id' => $this->_client_id,
 					'refresh_token' => $this->_refresh_token
@@ -385,11 +385,7 @@ class CdnEngine_GoogleDrive extends CdnEngine_Base {
 		try {
 			try {
 				$listed_files = $this->_service->files->listFiles(
-					array(
-						'q' =>
-						'(' . join( $titles_filter, ' or ' ) . ') ' .
-						'and trashed = false'
-					)
+					array( 'q' => '(' . join( ' or ', $titles_filter ) . ') and trashed = false' )
 				);
 			} catch ( \W3TCG_Google_Auth_Exception $e ) {
 				if ( $allow_refresh_token )

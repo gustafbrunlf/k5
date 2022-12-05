@@ -13,10 +13,10 @@ class Cache_Memcache extends Cache_Base {
 	private $_memcache = null;
 
 	/*
-     * Used for faster flushing
-     *
-     * @var integer $_key_version
-     */
+	 * Used for faster flushing
+	 *
+	 * @var integer $_key_version
+	 */
 	private $_key_version = array();
 
 	/**
@@ -33,12 +33,8 @@ class Cache_Memcache extends Cache_Base {
 			$persistent = isset( $config['persistent'] ) ? (boolean) $config['persistent'] : false;
 
 			foreach ( (array) $config['servers'] as $server ) {
-				if ( substr( $server, 0, 5 ) == 'unix:' )
-					$this->_memcache->addServer( trim( $server ), 0, $persistent );
-				else {
-					list( $ip, $port ) = explode( ':', $server );
-					$this->_memcache->addServer( trim( $ip ), (integer) trim( $port ), $persistent );
-				}
+				list( $ip, $port ) = Util_Content::endpoint_to_host_port( $server );
+				$this->_memcache->addServer( $ip, $port, $persistent );
 			}
 		} else {
 			return false;
@@ -180,9 +176,7 @@ class Cache_Memcache extends Cache_Base {
 	 * @return boolean
 	 */
 	function flush( $group = '' ) {
-		$this->_get_key_version( $group );   // initialize $this->_key_version
-		$this->_key_version[$group]++;
-		$this->_set_key_version( $this->_key_version[$group], $group );
+		$this->_increment_key_version( $group );
 		return true;
 	}
 
@@ -226,6 +220,25 @@ class Cache_Memcache extends Cache_Base {
 		// expiration has to be as long as possible since
 		// all cache data expires when key version expires
 		@$this->_memcache->set( $this->_get_key_version_key( $group ), $v, false, 0 );
+		$this->_key_version[$group] = $v;
+	}
+
+	/**
+	 * Increments key version.
+	 *
+	 * @since 0.14.5
+	 *
+	 * @param string $group Used to differentiate between groups of cache values.
+	 */
+	private function _increment_key_version( $group = '' ) {
+		$r = @$this->_memcache->increment( $this->_get_key_version_key( $group ), 1 );
+
+		if ( $r ) {
+			$this->_key_version[$group] = $r;
+		} else {
+			// it doesn't initialize the key if it doesn't exist.
+			$this->_set_key_version( 2, $group );
+		}
 	}
 
 	/**
@@ -325,7 +338,9 @@ class Cache_Memcache extends Cache_Base {
 
 	public function get_item_key( $name ) {
 		// memcached doesn't survive spaces in a key
-		$key = sprintf( 'w3tc_%s_%d_%s_%s', $this->_host, $this->_blog_id, $this->_module, md5( $name ) );
+		$key = sprintf( 'w3tc_%d_%s_%d_%s_%s',
+			$this->_instance_id, $this->_host, $this->_blog_id,
+			$this->_module, md5( $name ) );
 		return $key;
 	}
 }

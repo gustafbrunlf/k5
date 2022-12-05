@@ -20,6 +20,14 @@ class Cdnfsd_Core {
 				$engine_object = null;   // extension handles everything
 				break;
 
+				case 'transparentcdn':
+					$engine_object = new Cdnfsd_TransparentCDN_Engine( array(
+						'company_id'    => $c->get_string( 'cdnfsd.transparentcdn.company_id' ),
+						'client_id'     => $c->get_string( 'cdnfsd.transparentcdn.client_id' ),
+						'client_secret' => $c->get_string( 'cdnfsd.transparentcdn.client_secret' )
+					) );
+				break;
+
 			case 'cloudfront':
 				$engine_object = new Cdnfsd_CloudFront_Engine( array(
 						'access_key' => $c->get_string( 'cdnfsd.cloudfront.access_key' ),
@@ -51,11 +59,36 @@ class Cdnfsd_Core {
 					) );
 				break;
 
+			case 'stackpath2':
+				$state = Dispatcher::config_state();
+
+				$engine_object = new Cdnfsd_StackPath2_Engine( array(
+					'client_id' => $c->get_string( 'cdnfsd.stackpath2.client_id' ),
+					'client_secret' => $c->get_string( 'cdnfsd.stackpath2.client_secret' ),
+					'stack_id' => $c->get_string( 'cdnfsd.stackpath2.stack_id' ),
+					'site_root_domain' => $c->get_string( 'cdnfsd.stackpath2.site_root_domain' ),
+					'domain' => $c->get_array( 'cdnfsd.stackpath2.domain' ),
+					'ssl' => $c->get_string( 'cdnfsd.stackpath2.ssl' ),
+					'access_token' => $state->get_string( 'cdnfsd.stackpath2.access_token' ),
+					'on_new_access_token' => array(
+						$this,
+						'on_stackpath2_new_access_token'
+					)
+				) );
+				break;
+
 			default:
 				throw new \Exception( 'unknown engine ' . $engine );
 			}
 		}
 
 		return $engine_object;
+	}
+
+
+	public function on_stackpath2_new_access_token( $access_token ) {
+		$state = Dispatcher::config_state();
+		$state->set( 'cdnfsd.stackpath2.access_token', $access_token );
+		$state->save();
 	}
 }

@@ -8,27 +8,27 @@
  *
  * Denna fil innehåller följande konfigurationer:
  *
- * * Inställningar för MySQL
+ * * Inställningar för databas
  * * Säkerhetsnycklar
  * * Tabellprefix för databas
  * * ABSPATH
  *
- * @link https://codex.wordpress.org/Editing_wp-config.php
+ * @link https://wordpress.org/support/article/editing-wp-config-php/
  *
  * @package WordPress
  */
 
-// ** MySQL-inställningar - MySQL-uppgifter får du från ditt webbhotell ** //
+// ** Databasinställningar - åtkomstuppgifter för databasen får du från ditt webbhotell ** //
 /** Namnet på databasen du vill använda för WordPress */
 define('DB_NAME', 'Ange databasnamn här');
 
-/** MySQL-databasens användarnamn */
+/** Databasens användarnamn */
 define('DB_USER', 'Ange databasanvändare här');
 
-/** MySQL-databasens lösenord */
+/** Databasens lösenord */
 define('DB_PASSWORD', 'Ange databaslösenord här');
 
-/** MySQL-server */
+/** Databasserver */
 define('DB_HOST', 'localhost');
 
 /** Teckenkodning för tabellerna i databasen. */
@@ -78,12 +78,16 @@ $table_prefix = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */ 
 define('WP_DEBUG', false);
+/* Lägg in eventuella anpassade värden mellan denna rad och raden med "sluta redigera här". */
+
+
+
 
 /* Det var allt, sluta redigera här och börja publicera! */
 
 /** Absolut sökväg till WordPress-katalogen. */
 if ( !defined('ABSPATH') )
-	define('ABSPATH', dirname(__FILE__) . '/');
+	define('ABSPATH', __DIR__ . '/');
 
 /** Anger WordPress-värden och inkluderade filer. */
 require_once(ABSPATH . 'wp-settings.php');
